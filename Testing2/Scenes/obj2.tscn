@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://m42jxbsrt7e5"]
+
+[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://icon.svg" id="1_stnvk"]
+[ext_resource type="Script" path="res://Testing2/Object.gd" id="2_ovw3o"]
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_skg7i"]
+
+[sub_resource type="Resource" id="Resource_4yosq"]
+script = ExtResource("3_skg7i")
+charName = "Detective"
+dialogueLines = Array[String](["Wow, that's a beautiful vase. ", "I bet it is worth a [rainbow]fortune."])
+revealPortrait = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
+size = Vector2(108, 111)
+
+[node name="Object" type="Sprite2D"]
+position = Vector2(722, 309)
+texture = ExtResource("1_stnvk")
+script = ExtResource("2_ovw3o")
+objName = "Vase"
+dialogueNodes = Array[ExtResource("3_skg7i")]([SubResource("Resource_4yosq")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_ox3bn")

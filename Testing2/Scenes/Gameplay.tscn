@@ -1,0 +1,453 @@
+[gd_scene load_steps=23 format=3 uid="uid://bteovq3tw71sw"]
+
+[ext_resource type="Script" path="res://Testing2/Gameplay.gd" id="1_12l1t"]
+[ext_resource type="Script" path="res://Testing2/Portrait.gd" id="2_xqvke"]
+[ext_resource type="Texture2D" uid="uid://cxedefgbhjtfs" path="res://Sprites/spirit1.png" id="3_0h7it"]
+[ext_resource type="Texture2D" uid="uid://u1v11840mimh" path="res://Sprites/spirit2.png" id="4_t6ydl"]
+[ext_resource type="Script" path="res://Testing2/Inspect.gd" id="5_cp5e5"]
+[ext_resource type="Script" path="res://Testing2/Dialogue.gd" id="6_3vhph"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="7_oiypg"]
+[ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="8_fowi4"]
+[ext_resource type="Script" path="res://Testing/MenuButton.gd" id="9_8djrq"]
+[ext_resource type="Texture2D" uid="uid://bxo0j3s02nrof" path="res://Sprites/closeMenu.png" id="10_ipyxp"]
+[ext_resource type="Texture2D" uid="uid://iu3rv7qwb3eh" path="res://Sprites/tempBGs/5ce56f96fbb7b8826e59fc39af43a3bd.jpg" id="11_ijpqs"]
+[ext_resource type="Script" path="res://Testing2/RoomButton.gd" id="12_42f76"]
+[ext_resource type="PackedScene" uid="uid://buuco8mkqbys0" path="res://Testing2/Scenes/obj1.tscn" id="13_eq36b"]
+[ext_resource type="PackedScene" uid="uid://m42jxbsrt7e5" path="res://Testing2/Scenes/obj2.tscn" id="14_7i2s1"]
+[ext_resource type="PackedScene" uid="uid://dq6a2fm6gp5if" path="res://Testing2/Scenes/obj3.tscn" id="15_0onyp"]
+[ext_resource type="PackedScene" uid="uid://m4quuffx01d0" path="res://Testing2/Scenes/obj4.tscn" id="16_bltjp"]
+[ext_resource type="Texture2D" uid="uid://crssrea13njma" path="res://Sprites/tempBGs/091e3898f72c3803fe206613b2edc117.jpg" id="17_h4ajg"]
+[ext_resource type="Texture2D" uid="uid://cicj2a1p2h02g" path="res://Sprites/tempBGs/c3a9654b6abf961022ac24c36f46a246.jpg" id="18_h1kst"]
+[ext_resource type="Texture2D" uid="uid://dthhx2cjrhubc" path="res://Sprites/tempBGs/db635182d74d69cdcab27122a363f23f.jpg" id="19_ijvgb"]
+[ext_resource type="Script" path="res://Testing2/Action.gd" id="20_km15i"]
+[ext_resource type="PackedScene" uid="uid://he7nra2qr48l" path="res://Testing2/Scenes/dialoguePanel.tscn" id="21_kpniw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q35sd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0h7it")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t6ydl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Gameplay" type="CanvasLayer"]
+script = ExtResource("1_12l1t")
+
+[node name="Portrait" type="Control" parent="."]
+modulate = Color(0.435294, 0.933333, 0.941176, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 611.0
+offset_top = 23.0
+offset_right = 1048.0
+offset_bottom = 673.0
+script = ExtResource("2_xqvke")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portrait"]
+position = Vector2(196, 381.875)
+scale = Vector2(0.669531, 0.669531)
+sprite_frames = SubResource("SpriteFrames_q35sd")
+
+[node name="Inspect" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("5_cp5e5")
+
+[node name="Objects" type="Control" parent="Inspect"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("6_3vhph")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogue"]
+offset_left = 377.0
+offset_top = 490.0
+offset_right = 1197.0
+offset_bottom = 603.0
+
+[node name="Button" type="Button" parent="Dialogue/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Choice"
+
+[node name="Control" type="Control" parent="Dialogue/HBoxContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="DeductionMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="DeductionMenu"]
+modulate = Color(0, 0, 0, 0.85098)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -312.0
+offset_right = 502.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_oiypg")
+
+[node name="TextureRect2" type="TextureRect" parent="DeductionMenu"]
+modulate = Color(0, 0.870588, 0.87451, 0.85098)
+offset_left = 380.0
+offset_top = 107.0
+offset_right = 677.0
+offset_bottom = 427.0
+texture = ExtResource("8_fowi4")
+
+[node name="TextureRect" type="TextureRect" parent="DeductionMenu/TextureRect2"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_oiypg")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 708.0
+offset_top = 211.0
+offset_right = 870.0
+offset_bottom = 243.0
+text = "They were killed by:"
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 708.0
+offset_top = 160.0
+offset_right = 919.0
+offset_bottom = 192.0
+text = "This spirit's name was:"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 708.0
+offset_top = 261.0
+offset_right = 922.0
+offset_bottom = 298.0
+bbcode_enabled = true
+text = "their dying wish was to:"
+
+[node name="PanelContainer" type="PanelContainer" parent="DeductionMenu"]
+offset_left = 380.0
+offset_top = 462.0
+offset_right = 678.0
+offset_bottom = 627.0
+
+[node name="TextureRect3" type="TextureRect" parent="DeductionMenu/PanelContainer"]
+modulate = Color(0.286275, 0.286275, 0.286275, 1)
+layout_mode = 2
+texture = ExtResource("7_oiypg")
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="DeductionMenu/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[wave][b]Clues:"
+
+[node name="HScrollBar" type="ScrollContainer" parent="DeductionMenu"]
+offset_left = 402.0
+offset_top = 508.0
+offset_right = 660.0
+offset_bottom = 613.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeductionMenu/HScrollBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="DeductionMenu"]
+offset_left = 699.0
+offset_top = 461.0
+offset_right = 1117.0
+offset_bottom = 626.0
+
+[node name="TextureRect3" type="TextureRect" parent="DeductionMenu/PanelContainer2"]
+modulate = Color(0.286275, 0.286275, 0.286275, 1)
+layout_mode = 2
+texture = ExtResource("7_oiypg")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeductionMenu/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="DeductionMenu/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Description of clue:
+____________________________________________________
+____________________________________________________
+____________________________________________________
+"
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 955.0
+offset_top = 162.0
+offset_right = 995.0
+offset_bottom = 202.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -20.5
+offset_right = 57.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Character)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -23.0
+offset_right = 50.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_8djrq")
+names = Array[String](["[b]Joe", "[b]Jane", "[b]John", "[b]Jack", "[b]Jill"])
+
+[node name="Control2" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 941.0
+offset_top = 208.0
+offset_right = 981.0
+offset_bottom = 248.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -19.0
+offset_right = 75.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Cause of Death)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -17.0
+offset_right = 76.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_8djrq")
+names = Array[String](["Drowning", "Strangling", "Decapitation"])
+
+[node name="Control3" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 993.0
+offset_top = 259.0
+offset_right = 1033.0
+offset_bottom = 299.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -18.5
+offset_right = 107.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Unfinished Business)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -24.0
+offset_right = 74.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_8djrq")
+names = Array[String](["Wants to see super moon", "Never got to dance with son", "Listen tto music on a cruise"])
+
+[node name="Button" type="Button" parent="DeductionMenu"]
+offset_left = 788.0
+offset_top = 357.0
+offset_right = 1006.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 26
+text = "Check with Spirit"
+
+[node name="CLOSE" type="TextureButton" parent="DeductionMenu"]
+offset_left = 1087.0
+offset_top = 53.0
+offset_right = 1135.0
+offset_bottom = 101.0
+texture_normal = ExtResource("10_ipyxp")
+
+[node name="Map" type="PanelContainer" parent="."]
+offset_left = 443.0
+offset_top = 52.0
+offset_right = 1133.0
+offset_bottom = 683.0
+
+[node name="ColorRect" type="ColorRect" parent="Map"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Map"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ROOMS" type="PanelContainer" parent="Map/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Map/MarginContainer/ROOMS"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Map/MarginContainer/ROOMS/ScrollContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("11_ijpqs")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "ROOM 1"
+script = ExtResource("12_42f76")
+objects = Array[PackedScene]([ExtResource("13_eq36b"), ExtResource("14_7i2s1"), ExtResource("15_0onyp"), ExtResource("16_bltjp")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_h4ajg")
+
+[node name="Button" type="Button" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ROOM 1"
+script = ExtResource("12_42f76")
+objects = Array[PackedScene]([ExtResource("14_7i2s1")])
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("18_h1kst")
+
+[node name="Button" type="Button" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "ROOM 2"
+script = ExtResource("12_42f76")
+objects = Array[PackedScene]([ExtResource("15_0onyp")])
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("19_ijvgb")
+
+[node name="Button" type="Button" parent="Map/MarginContainer/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Room 3
+"
+script = ExtResource("12_42f76")
+objects = Array[PackedScene]([ExtResource("16_bltjp")])
+
+[node name="Actions" type="VBoxContainer" parent="."]
+offset_left = 29.0
+offset_top = 388.0
+offset_right = 348.0
+offset_bottom = 693.0
+
+[node name="Talk" type="Button" parent="Actions" node_paths=PackedStringArray("node")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Talk"
+script = ExtResource("20_km15i")
+node = NodePath("../../Dialogue")
+
+[node name="Inspect" type="Button" parent="Actions" node_paths=PackedStringArray("node")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inspect"
+script = ExtResource("20_km15i")
+node = NodePath("../../Inspect")
+
+[node name="Exorcise" type="Button" parent="Actions" node_paths=PackedStringArray("node")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exorcise"
+script = ExtResource("20_km15i")
+node = NodePath("../../DeductionMenu")
+
+[node name="Map" type="Button" parent="Actions" node_paths=PackedStringArray("node")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Map"
+script = ExtResource("20_km15i")
+node = NodePath("../../Map")
+
+[node name="DialoguePanel" parent="." instance=ExtResource("21_kpniw")]

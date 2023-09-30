@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dq6a2fm6gp5if"]
+
+[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://icon.svg" id="1_2tkxd"]
+[ext_resource type="Script" path="res://Testing2/Object.gd" id="2_o6vqg"]
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_svf7k"]
+
+[sub_resource type="Resource" id="Resource_fbcf3"]
+script = ExtResource("3_svf7k")
+charName = "Detective"
+dialogueLines = Array[String](["I'm not allowed near lamps anymore.", " I get all jittery..."])
+revealPortrait = false
+
+[sub_resource type="Resource" id="Resource_6h7il"]
+script = ExtResource("3_svf7k")
+charName = "Sidekick"
+dialogueLines = Array[String](["What do you mean...? "])
+revealPortrait = false
+
+[sub_resource type="Resource" id="Resource_my4p8"]
+script = ExtResource("3_svf7k")
+charName = "Sidekick"
+dialogueLines = Array[String](["Like, you have a [b]lamp-phobia[/b] or something?"])
+revealPortrait = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
+size = Vector2(108, 111)
+
+[node name="Object" type="Sprite2D"]
+position = Vector2(488, 237)
+texture = ExtResource("1_2tkxd")
+script = ExtResource("2_o6vqg")
+objName = "Lamp"
+dialogueNodes = Array[ExtResource("3_svf7k")]([SubResource("Resource_fbcf3"), SubResource("Resource_6h7il"), SubResource("Resource_my4p8")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_ox3bn")

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NPC" load_steps=7 format=3 uid="uid://e7yye63t3vhx"]
+
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="1_obrbn"]
+[ext_resource type="Script" path="res://Testing/NPCResource.gd" id="2_4kh8m"]
+[ext_resource type="Texture2D" uid="uid://b7cygot3veqln" path="res://Sprites/spirit3.png" id="3_4t7h8"]
+
+[sub_resource type="Resource" id="Resource_8pjir"]
+script = ExtResource("1_obrbn")
+dialogueLines = Array[String](["[wave]Suuuup, bro.", "Welcome to the [i]chill zone...[/i]"])
+
+[sub_resource type="Resource" id="Resource_82bnc"]
+script = ExtResource("1_obrbn")
+dialogueLines = Array[String](["You try'na get lit, my guy?"])
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6gup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4t7h8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_4kh8m")
+npcName = ""
+dialogueNodes = Array[ExtResource("1_obrbn")]([SubResource("Resource_8pjir"), SubResource("Resource_82bnc")])
+spriteFrames = SubResource("SpriteFrames_o6gup")

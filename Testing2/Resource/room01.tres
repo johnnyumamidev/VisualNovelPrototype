@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Room" load_steps=4 format=3 uid="uid://ipo6dcbxgt5s"]
+
+[ext_resource type="Texture2D" uid="uid://crssrea13njma" path="res://Sprites/tempBGs/091e3898f72c3803fe206613b2edc117.jpg" id="1_65x4x"]
+[ext_resource type="Script" path="res://Testing2/Resource/Room.gd" id="1_xo43u"]
+[ext_resource type="PackedScene" uid="uid://buuco8mkqbys0" path="res://Testing2/Scenes/obj1.tscn" id="2_p36hy"]
+
+[resource]
+script = ExtResource("1_xo43u")
+bg = ExtResource("1_65x4x")
+objects = Array[PackedScene]([ExtResource("2_p36hy")])

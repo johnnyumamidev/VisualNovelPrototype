@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NPC" load_steps=5 format=3 uid="uid://cief5gg8fceu6"]
+
+[ext_resource type="Texture2D" uid="uid://cxedefgbhjtfs" path="res://Sprites/spirit1.png" id="2_svaye"]
+[ext_resource type="Script" path="res://Testing/NPCResource.gd" id="2_v4o88"]
+[ext_resource type="Texture2D" uid="uid://u1v11840mimh" path="res://Sprites/spirit2.png" id="3_ogwe4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mm8g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_svaye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ogwe4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_v4o88")
+spriteFrames = SubResource("SpriteFrames_5mm8g")

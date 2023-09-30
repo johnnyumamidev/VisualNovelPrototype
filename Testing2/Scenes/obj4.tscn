@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://m4quuffx01d0"]
+
+[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://icon.svg" id="1_22oa3"]
+[ext_resource type="Script" path="res://Testing2/Object.gd" id="2_krsll"]
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_6am6t"]
+
+[sub_resource type="Resource" id="Resource_iy752"]
+script = ExtResource("3_6am6t")
+charName = "Detective"
+dialogueLines = Array[String](["Look here, it's the newest model of high-tech computers that I've heard so much about."])
+revealPortrait = false
+
+[sub_resource type="Resource" id="Resource_lprbx"]
+script = ExtResource("3_6am6t")
+charName = "Sidekick"
+dialogueLines = Array[String](["You make it sound as un-high tech as possible, though."])
+revealPortrait = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
+size = Vector2(108, 111)
+
+[node name="Object" type="Sprite2D"]
+position = Vector2(1035, 430)
+texture = ExtResource("1_22oa3")
+script = ExtResource("2_krsll")
+objName = "Computer"
+dialogueNodes = Array[ExtResource("3_6am6t")]([SubResource("Resource_iy752"), SubResource("Resource_lprbx")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_ox3bn")

@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw658xuhihsjn"]
+
+[ext_resource type="Script" path="res://Scenes/DialoguePanel3.gd" id="1_er2mw"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="5_o0kr6"]
+[ext_resource type="Texture2D" uid="uid://ii3vqkwylidj" path="res://Sprites/nextLineIcon/icon1.png" id="6_bard1"]
+[ext_resource type="Script" path="res://Scenes/UI/LineCompleteIcon.gd" id="6_w0akl"]
+[ext_resource type="Texture2D" uid="uid://c5muc1voer4t3" path="res://Sprites/nextLineIcon/icon2.png" id="7_lrcp2"]
+[ext_resource type="Texture2D" uid="uid://c31ynodtjinwr" path="res://Sprites/nextLineIcon/icon3.png" id="8_mys7n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xisn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_bard1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lrcp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mys7n")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 8.0
+}]
+
+[node name="DialoguePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -242.0
+offset_right = 512.0
+offset_bottom = -42.0002
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_er2mw")
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.45098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_o0kr6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 1024.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderLarge"
+text = "CharacterName"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 18.0
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Character" type="Timer" parent="."]
+wait_time = 0.03
+
+[node name="Sentence" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="LineCompleteIcon" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 992.0
+offset_top = 173.0
+offset_right = 1032.0
+offset_bottom = 213.0
+script = ExtResource("6_w0akl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LineCompleteIcon"]
+scale = Vector2(0.24, 0.24)
+sprite_frames = SubResource("SpriteFrames_2xisn")
+animation = &"hover"
+frame_progress = 0.100922
+
+[connection signal="timeout" from="Character" to="." method="_on_character_timeout"]
+[connection signal="timeout" from="Sentence" to="." method="_on_sentence_timeout"]

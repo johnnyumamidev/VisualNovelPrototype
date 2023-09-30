@@ -1,0 +1,851 @@
+[gd_scene load_steps=45 format=3 uid="uid://bdbvprc7bx45x"]
+
+[ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_nlf2q"]
+[ext_resource type="Texture2D" uid="uid://iu3rv7qwb3eh" path="res://Sprites/tempBGs/5ce56f96fbb7b8826e59fc39af43a3bd.jpg" id="2_i1i5f"]
+[ext_resource type="Script" path="res://Testing/Environment.gd" id="2_j6ta1"]
+[ext_resource type="Texture2D" uid="uid://cxedefgbhjtfs" path="res://Sprites/spirit1.png" id="3_hskp3"]
+[ext_resource type="PackedScene" uid="uid://bw658xuhihsjn" path="res://Scenes/UI/dialogue_panel.tscn" id="3_i8ni6"]
+[ext_resource type="Resource" uid="uid://dbcfxrj3p2sj0" path="res://DialogueNodes/node01.tres" id="4_bysxb"]
+[ext_resource type="Texture2D" uid="uid://u1v11840mimh" path="res://Sprites/spirit2.png" id="4_l3unl"]
+[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://transition.png" id="4_qeyx7"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="4_sgbpy"]
+[ext_resource type="Resource" uid="uid://vu2ryxwjv8xm" path="res://DialogueNodes/node02.tres" id="5_nmbcs"]
+[ext_resource type="Script" path="res://Testing/AnimatedSprite2D.gd" id="5_ogrsw"]
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="6_utl8r"]
+[ext_resource type="Script" path="res://Testing/SpiritInfoInput.gd" id="7_ceyuy"]
+[ext_resource type="Script" path="res://Testing/Portrait.gd" id="7_xe87w"]
+[ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="8_5gk8m"]
+[ext_resource type="Script" path="res://Scenes/AnimationPlayer.gd" id="8_orxbc"]
+[ext_resource type="Script" path="res://Testing/MenuButton.gd" id="9_3ftvn"]
+[ext_resource type="Script" path="res://Testing/Actions.gd" id="12_dtc63"]
+[ext_resource type="Texture2D" uid="uid://0aduh2uscvkg" path="res://Sprites/handPrint.png" id="12_j06b6"]
+[ext_resource type="Script" path="res://Testing/Talk.gd" id="14_3masu"]
+[ext_resource type="Texture2D" uid="uid://crssrea13njma" path="res://Sprites/tempBGs/091e3898f72c3803fe206613b2edc117.jpg" id="14_c3dq7"]
+[ext_resource type="Script" path="res://Testing/RoomManager.gd" id="14_fw4r7"]
+[ext_resource type="Texture2D" uid="uid://cicj2a1p2h02g" path="res://Sprites/tempBGs/c3a9654b6abf961022ac24c36f46a246.jpg" id="15_2plbu"]
+[ext_resource type="Script" path="res://Testing/MapButton.gd" id="16_4vdy2"]
+[ext_resource type="Texture2D" uid="uid://dthhx2cjrhubc" path="res://Sprites/tempBGs/db635182d74d69cdcab27122a363f23f.jpg" id="16_dqk4w"]
+[ext_resource type="Script" path="res://Testing/Exorcise.gd" id="16_y5vny"]
+[ext_resource type="Script" path="res://Testing/Choice.gd" id="17_n8kx4"]
+[ext_resource type="Resource" uid="uid://cief5gg8fceu6" path="res://Testing/npc00.tres" id="18_3apxu"]
+[ext_resource type="Script" path="res://Testing/Vision.gd" id="18_4nh78"]
+[ext_resource type="Resource" uid="uid://bscf3t232evnl" path="res://Testing/npc01.tres" id="19_vsptl"]
+[ext_resource type="Texture2D" uid="uid://bxo0j3s02nrof" path="res://Sprites/closeMenu.png" id="20_va8l8"]
+[ext_resource type="Resource" uid="uid://c3i8gowpvfa1" path="res://Testing/npc02.tres" id="21_a8u8o"]
+[ext_resource type="Resource" uid="uid://e7yye63t3vhx" path="res://Testing/npc03.tres" id="22_7dvtp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yu6v0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hskp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l3unl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Resource" id="Resource_ubnh3"]
+script = ExtResource("6_utl8r")
+charName = ""
+dialogueLines = Array[String](["Oh hey, a visitor! ", "Don't get too many of those these days."])
+revealPortrait = false
+
+[sub_resource type="Resource" id="Resource_wl3pv"]
+script = ExtResource("6_utl8r")
+charName = ""
+dialogueLines = Array[String](["Especially not [b]living[/b] ones! ", "[wave]Wild... [/wave]"])
+revealPortrait = false
+
+[sub_resource type="Resource" id="Resource_rrdth"]
+script = ExtResource("6_utl8r")
+charName = ""
+dialogueLines = Array[String](["Anyways, what can I do for ya?"])
+revealPortrait = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tm0f"]
+size = Vector2(560, 921)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q70r2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hskp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l3unl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p4gs1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_acgpj"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_s6psd"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/Transition:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_fade_out"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Environment")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_npc"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialogue/DialoguePanel")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_indexes"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Environment")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_bg"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Environment/NPC")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_npc"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8ilah"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/Transition:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/Transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecio4"]
+_data = {
+"fade_in": SubResource("Animation_s6psd"),
+"fade_out": SubResource("Animation_8ilah")
+}
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_nlf2q")
+speed = 2
+
+[node name="Environment" type="CanvasLayer" parent="."]
+script = ExtResource("2_j6ta1")
+
+[node name="BG" type="TextureRect" parent="Environment"]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -29.0
+offset_right = 603.0
+offset_bottom = 331.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.718518, 0.718518)
+texture = ExtResource("2_i1i5f")
+stretch_mode = 5
+
+[node name="NPC" type="AnimatedSprite2D" parent="Environment"]
+position = Vector2(491, 475)
+scale = Vector2(0.335938, 0.335938)
+sprite_frames = SubResource("SpriteFrames_yu6v0")
+frame_progress = 0.978685
+script = ExtResource("5_ogrsw")
+dialogueNodes = Array[ExtResource("6_utl8r")]([SubResource("Resource_ubnh3"), SubResource("Resource_wl3pv"), SubResource("Resource_rrdth")])
+
+[node name="Area2D" type="Area2D" parent="Environment/NPC"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/NPC/Area2D"]
+position = Vector2(5, 19.5)
+shape = SubResource("RectangleShape2D_4tm0f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+
+[node name="Portrait" type="Control" parent="Dialogue"]
+modulate = Color(0.435294, 0.933333, 0.941176, 1)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 409.0
+offset_top = 46.0
+offset_right = 846.0
+offset_bottom = 696.0
+script = ExtResource("7_xe87w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dialogue/Portrait"]
+position = Vector2(215, 326)
+scale = Vector2(0.785937, 0.785937)
+sprite_frames = SubResource("SpriteFrames_q70r2")
+frame_progress = 0.616418
+
+[node name="DialoguePanel" parent="Dialogue" instance=ExtResource("3_i8ni6")]
+dialogueNodes = Array[ExtResource("6_utl8r")]([ExtResource("4_bysxb"), ExtResource("5_nmbcs"), ExtResource("4_bysxb")])
+
+[node name="SpiritVision" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="SpiritVision"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 646.0
+offset_top = 295.0
+offset_right = 841.0
+offset_bottom = 474.0
+rotation = -0.3525
+
+[node name="TextureRect" type="TextureRect" parent="SpiritVision/Control"]
+modulate = Color(0.713726, 1, 1, 0.929412)
+material = SubResource("CanvasItemMaterial_p4gs1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_j06b6")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="SpiritVision"]
+modulate = Color(0.313726, 0.737255, 1, 0.298039)
+material = SubResource("CanvasItemMaterial_acgpj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Actions" type="CanvasLayer" parent="."]
+script = ExtResource("12_dtc63")
+
+[node name="PanelContainer" type="PanelContainer" parent="Actions"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 113.0
+offset_top = 141.0
+offset_right = -104.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Actions/PanelContainer"]
+modulate = Color(0.239216, 0.239216, 0.239216, 0.905882)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Actions/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Actions/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Talk" type="Button" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "Talk"
+script = ExtResource("14_3masu")
+
+[node name="Control" type="Control" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button2" type="Button" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "Map"
+script = ExtResource("14_fw4r7")
+
+[node name="Control2" type="Control" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button3" type="Button" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "Exorcise"
+script = ExtResource("16_y5vny")
+
+[node name="Control4" type="Control" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Vision" type="Button" parent="Actions/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "Spectral Vision"
+script = ExtResource("18_4nh78")
+
+[node name="Choices" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="Choices"]
+offset_left = 111.0
+offset_top = 61.0
+offset_right = 389.0
+offset_bottom = 155.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Choice" type="Button" parent="Choices/PanelContainer"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Choices"]
+offset_left = 71.0
+offset_top = 181.0
+offset_right = 349.0
+offset_bottom = 275.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer2"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Button2" type="Button" parent="Choices/PanelContainer2"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Choices"]
+offset_left = 114.0
+offset_top = 309.0
+offset_right = 392.0
+offset_bottom = 403.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer3"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Button3" type="Button" parent="Choices/PanelContainer3"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="PanelContainer4" type="PanelContainer" parent="Choices"]
+offset_left = 859.0
+offset_top = 54.0
+offset_right = 1137.0
+offset_bottom = 148.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer4"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Button4" type="Button" parent="Choices/PanelContainer4"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="PanelContainer5" type="PanelContainer" parent="Choices"]
+offset_left = 896.0
+offset_top = 204.0
+offset_right = 1174.0
+offset_bottom = 298.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer5"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Button5" type="Button" parent="Choices/PanelContainer5"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="PanelContainer6" type="PanelContainer" parent="Choices"]
+offset_left = 866.0
+offset_top = 321.0
+offset_right = 1144.0
+offset_bottom = 415.0
+
+[node name="TextureRect" type="TextureRect" parent="Choices/PanelContainer6"]
+modulate = Color(0, 0, 0, 0.862745)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="Button6" type="Button" parent="Choices/PanelContainer6"]
+layout_mode = 2
+text = "Question"
+script = ExtResource("17_n8kx4")
+
+[node name="DeductionMenu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_ceyuy")
+buttonCount = 8
+info = "Test information akjshdflkjahsdlgkihawlekjbgasdf"
+
+[node name="TextureRect" type="TextureRect" parent="DeductionMenu"]
+modulate = Color(0, 0, 0, 0.85098)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="TextureRect2" type="TextureRect" parent="DeductionMenu"]
+modulate = Color(0, 0.870588, 0.87451, 0.85098)
+offset_left = 278.0
+offset_top = 119.0
+offset_right = 575.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_5gk8m")
+
+[node name="TextureRect" type="TextureRect" parent="DeductionMenu/TextureRect2"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 606.0
+offset_top = 223.0
+offset_right = 768.0
+offset_bottom = 255.0
+text = "They were killed by:"
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 606.0
+offset_top = 172.0
+offset_right = 817.0
+offset_bottom = 204.0
+text = "This spirit's name was:"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="DeductionMenu"]
+offset_left = 606.0
+offset_top = 273.0
+offset_right = 820.0
+offset_bottom = 310.0
+bbcode_enabled = true
+text = "their dying wish was to:"
+
+[node name="PanelContainer" type="PanelContainer" parent="DeductionMenu"]
+offset_left = 278.0
+offset_top = 474.0
+offset_right = 576.0
+offset_bottom = 639.0
+
+[node name="TextureRect3" type="TextureRect" parent="DeductionMenu/PanelContainer"]
+modulate = Color(0.286275, 0.286275, 0.286275, 1)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="DeductionMenu/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[wave][b]Clues:"
+
+[node name="HScrollBar" type="ScrollContainer" parent="DeductionMenu"]
+offset_left = 300.0
+offset_top = 520.0
+offset_right = 558.0
+offset_bottom = 625.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeductionMenu/HScrollBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="DeductionMenu"]
+offset_left = 597.0
+offset_top = 473.0
+offset_right = 1015.0
+offset_bottom = 638.0
+
+[node name="TextureRect3" type="TextureRect" parent="DeductionMenu/PanelContainer2"]
+modulate = Color(0.286275, 0.286275, 0.286275, 1)
+layout_mode = 2
+texture = ExtResource("4_sgbpy")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeductionMenu/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="DeductionMenu/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Description of clue:
+____________________________________________________
+____________________________________________________
+____________________________________________________
+"
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 853.0
+offset_top = 174.0
+offset_right = 893.0
+offset_bottom = 214.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -20.5
+offset_right = 57.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Character)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -23.0
+offset_right = 50.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_3ftvn")
+names = Array[String](["[b]Joe", "[b]Jane", "[b]John", "[b]Jack", "[b]Jill"])
+
+[node name="Control2" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 839.0
+offset_top = 220.0
+offset_right = 879.0
+offset_bottom = 260.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -19.0
+offset_right = 75.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Cause of Death)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -17.0
+offset_right = 76.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_3ftvn")
+names = Array[String](["Drowning", "Strangling", "Decapitation"])
+
+[node name="Control3" type="Control" parent="DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 891.0
+offset_top = 271.0
+offset_right = 931.0
+offset_bottom = 311.0
+
+[node name="Label" type="RichTextLabel" parent="DeductionMenu/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -18.5
+offset_right = 107.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b](Unfinished Business)"
+
+[node name="MenuButton" type="MenuButton" parent="DeductionMenu/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -24.0
+offset_right = 74.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_3ftvn")
+names = Array[String](["Wants to see super moon", "Never got to dance with son", "Listen tto music on a cruise"])
+
+[node name="Button" type="Button" parent="DeductionMenu"]
+offset_left = 686.0
+offset_top = 369.0
+offset_right = 904.0
+offset_bottom = 413.0
+theme_override_font_sizes/font_size = 26
+text = "Check with Spirit"
+
+[node name="CLOSE" type="TextureButton" parent="DeductionMenu"]
+offset_left = 985.0
+offset_top = 65.0
+offset_right = 1033.0
+offset_bottom = 113.0
+texture_normal = ExtResource("20_va8l8")
+
+[node name="Map" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="Map"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 53.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Map/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/margin_right = 50
+
+[node name="MapButton" type="Button" parent="Map/PanelContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "LOCATIONS"
+
+[node name="ROOMS" type="PanelContainer" parent="Map"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -155.0
+offset_right = -56.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Map/ROOMS"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/ROOMS/ScrollContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Map/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_i1i5f")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "ROOM 1"
+script = ExtResource("16_4vdy2")
+npcData = ExtResource("18_3apxu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_c3dq7")
+
+[node name="Button" type="Button" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "ROOM 1"
+script = ExtResource("16_4vdy2")
+npcData = ExtResource("19_vsptl")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Map/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("15_2plbu")
+
+[node name="Button" type="Button" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "ROOM 2"
+script = ExtResource("16_4vdy2")
+npcData = ExtResource("21_a8u8o")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Map/ROOMS/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Room" type="TextureRect" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("16_dqk4w")
+
+[node name="Button" type="Button" parent="Map/ROOMS/ScrollContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Room 3
+"
+script = ExtResource("16_4vdy2")
+npcData = ExtResource("22_7dvtp")
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ecio4")
+}
+script = ExtResource("8_orxbc")
+
+[node name="Transition" type="TextureRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_qeyx7")

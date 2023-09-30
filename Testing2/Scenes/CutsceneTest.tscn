@@ -1,0 +1,176 @@
+[gd_scene load_steps=8 format=3 uid="uid://kx3ofdxdgv40"]
+
+[ext_resource type="Script" path="res://Testing2/Scenes/Cutscene.gd" id="1_boe8j"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="2_1bwhq"]
+[ext_resource type="Script" path="res://Scenes/UI/LineCompleteIcon.gd" id="3_okqrb"]
+[ext_resource type="Texture2D" uid="uid://ii3vqkwylidj" path="res://Sprites/nextLineIcon/icon1.png" id="4_5vxdd"]
+[ext_resource type="Texture2D" uid="uid://c5muc1voer4t3" path="res://Sprites/nextLineIcon/icon2.png" id="5_jyrej"]
+[ext_resource type="Texture2D" uid="uid://c31ynodtjinwr" path="res://Sprites/nextLineIcon/icon3.png" id="6_u0gmq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xisn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5vxdd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jyrej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u0gmq")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 8.0
+}]
+
+[node name="CutsceneTest" type="Node2D"]
+script = ExtResource("1_boe8j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="DialoguePanel" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -468.0
+offset_top = -249.0
+offset_right = 468.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BG" type="TextureRect" parent="CanvasLayer/DialoguePanel"]
+modulate = Color(0, 0, 0, 0.45098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1bwhq")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DialoguePanel"]
+layout_mode = 2
+offset_right = 1024.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DialoguePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="CharacterName" type="Label" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderLarge"
+text = "CharacterName"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 18.0
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="134241" type="VScrollBar" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/HBoxContainer/Dialogue"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
+
+[node name="16852" type="VScrollBar" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/HBoxContainer/Dialogue"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 68.0
+step = 1.0
+page = 68.0
+
+[node name="Spacer3" type="Control" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="134242" type="VScrollBar" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/RichTextLabel"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
+
+[node name="16853" type="VScrollBar" parent="CanvasLayer/DialoguePanel/MarginContainer/VBoxContainer/RichTextLabel"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 0.0
+step = 1.0
+
+[node name="Character" type="Timer" parent="CanvasLayer/DialoguePanel"]
+wait_time = 0.03
+
+[node name="Sentence" type="Timer" parent="CanvasLayer/DialoguePanel"]
+wait_time = 0.25
+
+[node name="LineCompleteIcon" type="Control" parent="CanvasLayer/DialoguePanel"]
+anchors_preset = 0
+offset_left = 820.0
+offset_top = 169.0
+offset_right = 860.0
+offset_bottom = 209.0
+script = ExtResource("3_okqrb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/DialoguePanel/LineCompleteIcon"]
+scale = Vector2(0.24, 0.24)
+sprite_frames = SubResource("SpriteFrames_2xisn")
+animation = &"hover"
+frame_progress = 0.100922
+
+[node name="Button" type="Button" parent="CanvasLayer/DialoguePanel"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 868.0
+offset_bottom = 209.0
+
+[connection signal="timeout" from="CanvasLayer/DialoguePanel/Character" to="CanvasLayer/DialoguePanel" method="_on_character_timeout" flags=18]
+[connection signal="timeout" from="CanvasLayer/DialoguePanel/Sentence" to="CanvasLayer/DialoguePanel" method="_on_sentence_timeout" flags=18]

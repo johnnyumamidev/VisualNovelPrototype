@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://1u28wov1akin"]
+
+[ext_resource type="Script" path="res://Testing2/RoomButton.gd" id="1_4xexq"]
+[ext_resource type="Texture2D" uid="uid://crssrea13njma" path="res://Sprites/tempBGs/091e3898f72c3803fe206613b2edc117.jpg" id="1_ygerm"]
+[ext_resource type="PackedScene" uid="uid://dq6a2fm6gp5if" path="res://Testing2/Scenes/obj3.tscn" id="3_8ylra"]
+[ext_resource type="PackedScene" uid="uid://m4quuffx01d0" path="res://Testing2/Scenes/obj4.tscn" id="4_yahib"]
+
+[node name="Room" type="VBoxContainer"]
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_ygerm")
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "ROOM 1"
+script = ExtResource("1_4xexq")
+objects = Array[PackedScene]([ExtResource("3_8ylra"), ExtResource("4_yahib")])

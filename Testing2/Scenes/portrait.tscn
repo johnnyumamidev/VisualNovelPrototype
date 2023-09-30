@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://brgp1dobnpdwh"]
+
+[ext_resource type="Texture2D" uid="uid://b7cygot3veqln" path="res://Sprites/spirit3.png" id="1_22q5l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrw3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_22q5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_22q5l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Portrait" type="AnimatedSprite2D"]
+visible = false
+position = Vector2(604, 400)
+scale = Vector2(0.669531, 0.669531)
+sprite_frames = SubResource("SpriteFrames_rrw3p")
+autoplay = "default"

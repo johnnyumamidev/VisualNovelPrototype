@@ -1,0 +1,497 @@
+[gd_scene load_steps=13 format=3 uid="uid://pluq8m0r6l44"]
+
+[ext_resource type="Script" path="res://Testing2/Scenes/title_screen.gd" id="1_f6yhx"]
+[ext_resource type="Texture2D" uid="uid://dtx4li5822tbv" path="res://Sprites/tempBGs/detective.jpg" id="1_xuj2g"]
+[ext_resource type="Texture2D" uid="uid://46ww2ok4nl3k" path="res://Sprites/tempBGs/cute ghost.jpg" id="2_atnpd"]
+[ext_resource type="Script" path="res://Testing2/Transition.gd" id="4_bayo4"]
+[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://transition.png" id="5_00s8e"]
+
+[sub_resource type="Animation" id="Animation_5ufr6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(787, 224)]
+}
+
+[sub_resource type="Animation" id="Animation_nses5"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(787, 224), Vector2(787, 200), Vector2(787, 224)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4pfw"]
+_data = {
+"RESET": SubResource("Animation_5ufr6"),
+"float": SubResource("Animation_nses5")
+}
+
+[sub_resource type="Animation" id="Animation_2fpbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8cfct"]
+resource_name = "fade_in"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_fade_out"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pbw4l"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0pcy"]
+_data = {
+"RESET": SubResource("Animation_2fpbq"),
+"fade_in": SubResource("Animation_8cfct"),
+"fade_out": SubResource("Animation_pbw4l")
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_f6yhx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.454902, 0.368627, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="VertContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/HBoxContainer/VertContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer/VertContainer"]
+modulate = Color(0, 1, 0.945098, 1)
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/bold_font_size = 72
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/bold_italics_font_size = 48
+bbcode_enabled = true
+text = "[center][wave][b]PSIKOS[/b][/wave]
+[i][b]P[/b]hantom [b]S[/b]eekers: [b]I[/b]nvestigators
+of [b]K[/b]ursed [b]O[/b]ddities & [b]s[/b]pirits"
+fit_content = true
+scroll_active = false
+
+[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer/VertContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/VertContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="CanvasLayer/HBoxContainer/VertContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Continue"
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer/VertContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "New Game"
+
+[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer/VertContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Options"
+
+[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer/VertContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Exit"
+
+[node name="Control2" type="Control" parent="CanvasLayer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/Control2"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -498.5
+offset_top = -501.0
+offset_right = 2058.04
+offset_bottom = 3595.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_xuj2g")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 787.0
+offset_top = 224.0
+offset_right = 1061.0
+offset_bottom = 498.0
+rotation = 0.298023
+texture = ExtResource("2_atnpd")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
+autoplay = "float"
+libraries = {
+"": SubResource("AnimationLibrary_t4pfw")
+}
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_p0pcy")
+}
+script = ExtResource("4_bayo4")
+
+[node name="Transition" type="TextureRect" parent="Transition"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.295e+08
+offset_bottom = 7.31993e+07
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_00s8e")
+expand_mode = 1
+
+[node name="SaveFiles" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="SaveFiles"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="ColorRect" type="ColorRect" parent="SaveFiles/MarginContainer"]
+modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveFiles/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SaveFiles/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Button" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE #1"
+
+[node name="Label" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label2" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label3" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button4" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label4" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button5" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label5" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button6" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label6" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button7" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label7" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button8" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label8" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button9" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label9" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button10" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label10" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button11" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label11" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button12" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label12" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button13" type="Button" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FILE"
+
+[node name="Label13" type="Label" parent="SaveFiles/MarginContainer/HBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
