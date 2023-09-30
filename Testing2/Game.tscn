@@ -682,7 +682,6 @@ libraries = {
 script = ExtResource("4_lxox6")
 
 [node name="Transition" type="TextureRect" parent="Transition"]
-visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 1.295e+08

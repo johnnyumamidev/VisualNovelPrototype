@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_tgqb5")
+charName = ""
 dialogueLines = Array[String](["Testity test test.	", "we testin' [wave]o/"])
+revealPortrait = false
