@@ -17,8 +17,9 @@ func _ready():
 
 func _process(delta):
 	
-	if hover && Input.is_action_just_pressed("click"):
-		inspect()
+	if Input.is_action_just_pressed("click"):
+		if hover && !dialogue.is_active:
+			inspect()
 
 func hover_true():
 	hover = true

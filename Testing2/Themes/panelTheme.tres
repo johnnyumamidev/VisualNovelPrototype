@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://23wkuxut0gj0"]
+
+[ext_resource type="FontFile" uid="uid://6q47hjjqbs8v" path="res://VerilySerifMono.otf" id="1_bbgmd"]
+
+[resource]
+default_font = ExtResource("1_bbgmd")
+RichTextLabel/fonts/bold_font = ExtResource("1_bbgmd")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_bbgmd")
+RichTextLabel/fonts/italics_font = ExtResource("1_bbgmd")
+RichTextLabel/fonts/mono_font = ExtResource("1_bbgmd")
+RichTextLabel/fonts/normal_font = ExtResource("1_bbgmd")
