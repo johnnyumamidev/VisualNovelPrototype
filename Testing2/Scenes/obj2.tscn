@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://m42jxbsrt7e5"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://icon.svg" id="1_stnvk"]
+[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://Sprites/icon.svg" id="1_stnvk"]
 [ext_resource type="Script" path="res://Testing2/Object.gd" id="2_ovw3o"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_skg7i"]
 

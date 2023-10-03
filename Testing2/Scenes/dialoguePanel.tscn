@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://he7nra2qr48l"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="1_eeqmc"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://Sprites/panel.png" id="1_eeqmc"]
 [ext_resource type="Script" path="res://Scenes/UI/LineCompleteIcon.gd" id="2_xvyy5"]
 [ext_resource type="Texture2D" uid="uid://ii3vqkwylidj" path="res://Sprites/nextLineIcon/icon1.png" id="3_s2g1a"]
 [ext_resource type="Texture2D" uid="uid://c5muc1voer4t3" path="res://Sprites/nextLineIcon/icon2.png" id="4_3isnq"]

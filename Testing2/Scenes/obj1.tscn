@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://buuco8mkqbys0"]
+[gd_scene load_steps=7 format=3 uid="uid://l8fw3dwml7vi"]
 
-[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://icon.svg" id="1_4x1t6"]
+[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://Sprites/icon.svg" id="1_i0g8w"]
 [ext_resource type="Script" path="res://Testing2/Object.gd" id="2_50kwm"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_6r61a"]
 
@@ -23,7 +23,7 @@ size = Vector2(108, 111)
 
 [node name="Object" type="Sprite2D"]
 position = Vector2(435, 464)
-texture = ExtResource("1_4x1t6")
+texture = ExtResource("1_i0g8w")
 script = ExtResource("2_50kwm")
 objName = "Box"
 dialogueNodes = Array[ExtResource("3_6r61a")]([SubResource("Resource_10fqw"), SubResource("Resource_jfxo3")])

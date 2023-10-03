@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxv66c66takve"
-path="res://.godot/imported/transition.png-b914c2e895e2eecb22f69d0065921d5f.ctex"
+uid="uid://d1q300sashwby"
+path="res://.godot/imported/PortraitBlue.png-3a5b30614e328e65ffbdaeee0e1ffebd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://transition.png"
-dest_files=["res://.godot/imported/transition.png-b914c2e895e2eecb22f69d0065921d5f.ctex"]
+source_file="res://Sprites/PortraitBlue.png"
+dest_files=["res://.godot/imported/PortraitBlue.png-3a5b30614e328e65ffbdaeee0e1ffebd.ctex"]
 
 [params]
 

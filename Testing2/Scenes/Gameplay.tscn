@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bteovq3tw71sw"]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://Testing2/Gameplay.gd" id="1_12l1t"]
 [ext_resource type="Script" path="res://Testing2/Portrait.gd" id="2_xqvke"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://u1v11840mimh" path="res://Sprites/spirit2.png" id="4_t6ydl"]
 [ext_resource type="Script" path="res://Testing2/Inspect.gd" id="5_cp5e5"]
 [ext_resource type="Script" path="res://Testing2/Dialogue.gd" id="6_3vhph"]
-[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="7_oiypg"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://Sprites/panel.png" id="7_oiypg"]
 [ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="8_fowi4"]
 [ext_resource type="Script" path="res://Testing/MenuButton.gd" id="9_8djrq"]
 [ext_resource type="Texture2D" uid="uid://bxo0j3s02nrof" path="res://Sprites/closeMenu.png" id="10_ipyxp"]

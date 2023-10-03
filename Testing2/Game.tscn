@@ -1,20 +1,20 @@
-[gd_scene load_steps=34 format=3 uid="uid://buqforpj57rg3"]
+[gd_scene load_steps=34 format=3 uid="uid://bo2iw71wdjxp4"]
 
 [ext_resource type="Script" path="res://Testing2/game.gd" id="1_hi6rp"]
 [ext_resource type="Script" path="res://Testing2/Environment.gd" id="2_4jubg"]
 [ext_resource type="Script" path="res://Testing2/Transition.gd" id="4_lxox6"]
-[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://transition.png" id="5_mxs8s"]
+[ext_resource type="Texture2D" uid="uid://dxvbf47suq0im" path="res://Sprites/PortraitRed.png" id="6_6rub5"]
 [ext_resource type="Script" path="res://Testing2/Gameplay.gd" id="6_t3k6i"]
-[ext_resource type="Texture2D" uid="uid://dxvbf47suq0im" path="res://PortraitRed.png" id="7_j1ycx"]
 [ext_resource type="Script" path="res://Testing2/DialogueChoice.gd" id="7_waral"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="8_68nsn"]
 [ext_resource type="Script" path="res://Testing2/Dialogue.gd" id="8_xcwex"]
-[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="9_0kgsw"]
 [ext_resource type="Script" path="res://Testing2/Inspect.gd" id="9_15a3n"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://Sprites/panel.png" id="9_i2072"]
 [ext_resource type="Script" path="res://Testing2/CloseDialogue.gd" id="10_wo688"]
 [ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="10_yeo3o"]
 [ext_resource type="Script" path="res://Testing/MenuButton.gd" id="11_8pfpx"]
 [ext_resource type="Script" path="res://Testing2/Map.gd" id="11_s0s6f"]
+[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://Sprites/transition.png" id="11_v4s38"]
 [ext_resource type="PackedScene" uid="uid://uxsiel21re0" path="res://Testing2/Scenes/room01.tscn" id="12_kfdej"]
 [ext_resource type="PackedScene" uid="uid://1u28wov1akin" path="res://Testing2/Scenes/room02.tscn" id="13_o16r8"]
 [ext_resource type="Theme" uid="uid://23wkuxut0gj0" path="res://Testing2/Themes/panelTheme.tres" id="15_ra256"]
@@ -31,7 +31,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_j1ycx")
+"texture": ExtResource("6_6rub5")
 }],
 "loop": true,
 "name": &"default",
@@ -245,7 +245,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_0kgsw")
+texture = ExtResource("9_i2072")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -284,7 +284,7 @@ offset_right = 415.0
 offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_mxs8s")
+texture = ExtResource("11_v4s38")
 
 [node name="TextureRect2" type="TextureRect" parent="Gameplay/DeductionMenu"]
 modulate = Color(0, 0.870588, 0.87451, 0.85098)
@@ -302,7 +302,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_mxs8s")
+texture = ExtResource("11_v4s38")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Gameplay/DeductionMenu"]
 offset_left = 538.0
@@ -463,7 +463,7 @@ offset_bottom = 508.0
 [node name="TextureRect3" type="TextureRect" parent="Gameplay/DeductionMenu/PanelContainer"]
 modulate = Color(0.286275, 0.286275, 0.286275, 1)
 layout_mode = 2
-texture = ExtResource("5_mxs8s")
+texture = ExtResource("11_v4s38")
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="Gameplay/DeductionMenu/PanelContainer"]
 layout_mode = 2
@@ -491,7 +491,7 @@ offset_bottom = 507.0
 [node name="TextureRect3" type="TextureRect" parent="Gameplay/DeductionMenu/PanelContainer2"]
 modulate = Color(0.286275, 0.286275, 0.286275, 1)
 layout_mode = 2
-texture = ExtResource("5_mxs8s")
+texture = ExtResource("11_v4s38")
 
 [node name="MarginContainer" type="MarginContainer" parent="Gameplay/DeductionMenu/PanelContainer2"]
 layout_mode = 2
@@ -526,7 +526,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_0kgsw")
+texture = ExtResource("9_i2072")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -687,7 +687,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_0kgsw")
+texture = ExtResource("9_i2072")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -773,7 +773,7 @@ offset_bottom = 28.0
 [node name="ColorRect" type="NinePatchRect" parent="Gameplay/DialoguePanel/PanelContainer"]
 modulate = Color(0.12549, 0.427451, 0.356863, 1)
 layout_mode = 2
-texture = ExtResource("9_0kgsw")
+texture = ExtResource("9_i2072")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -816,7 +816,7 @@ grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_mxs8s")
+texture = ExtResource("11_v4s38")
 expand_mode = 1
 
 [connection signal="timeout" from="Gameplay/DialoguePanel/Character" to="Gameplay/DialoguePanel" method="_on_character_timeout" flags=18]

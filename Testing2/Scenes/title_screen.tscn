@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://pluq8m0r6l44"]
+[gd_scene load_steps=13 format=3 uid="uid://drud2d0ofr1g5"]
 
 [ext_resource type="Script" path="res://Testing2/Scenes/title_screen.gd" id="1_f6yhx"]
 [ext_resource type="Texture2D" uid="uid://dtx4li5822tbv" path="res://Sprites/tempBGs/detective.jpg" id="1_xuj2g"]
 [ext_resource type="Texture2D" uid="uid://46ww2ok4nl3k" path="res://Sprites/tempBGs/cute ghost.jpg" id="2_atnpd"]
 [ext_resource type="Script" path="res://Testing2/Transition.gd" id="4_bayo4"]
-[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://transition.png" id="5_00s8e"]
+[ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://Sprites/transition.png" id="5_685js"]
 
 [sub_resource type="Animation" id="Animation_5ufr6"]
 length = 0.001
@@ -280,7 +280,7 @@ grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_00s8e")
+texture = ExtResource("5_685js")
 expand_mode = 1
 
 [node name="SaveFiles" type="CanvasLayer" parent="."]
