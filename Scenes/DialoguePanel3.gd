@@ -26,6 +26,7 @@ var no_nodes_left = false
 signal start_dialogue()
 signal end_dialogue()
 signal reveal_portrait()
+signal open_inspection()
 
 func _ready():
 	map.room_loaded.connect(get_room_dialogue)
@@ -101,6 +102,9 @@ func close_dialogue():
 	emit_signal("end_dialogue")
 	no_nodes_left = false
 	is_active = false
+	
+	if currentDialogueNode.open_inspection:
+		emit_signal("open_inspection")
 
 func reset_indexes():
 	nodeIndex = 0

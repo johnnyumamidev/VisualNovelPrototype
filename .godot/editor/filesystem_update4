@@ -13,3 +13,12 @@ res://Testing2/Scenes/room02.tscn
 res://Testing2/Scenes/CutsceneTest.tscn
 res://Testing2/Scenes/obj4.tscn
 res://Testing2/Object.gd
+res://Testing2/Resource/room01.tres
+res://Testing2/Gameplay.gd
+res://Testing2/Environment.gd
+res://Scenes/DialoguePanel3.gd
+res://Resources/dialogue_node.gd
+res://Testing2/Scenes/obj1.tscn
+res://Testing2/game.gd
+res://Testing2/CloseDialogue.gd
+res://Testing2/Inspect.gd

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="DialogueNode" load_steps=2 format=3 uid="uid://vu2ryxwjv8xm"]
-
-[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="1_tgqb5"]
-
-[resource]
-script = ExtResource("1_tgqb5")
-charName = ""
-dialogueLines = Array[String](["Testity test test.	", "we testin' [wave]o/"])
-revealPortrait = false

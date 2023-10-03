@@ -1,38 +1,19 @@
-[gd_resource type="Resource" script_class="Room" load_steps=10 format=3 uid="uid://n86ns5osd4ma"]
+[gd_resource type="Resource" script_class="Room" load_steps=7 format=3 uid="uid://n86ns5osd4ma"]
 
-[ext_resource type="Texture2D" uid="uid://iu3rv7qwb3eh" path="res://Sprites/tempBGs/5ce56f96fbb7b8826e59fc39af43a3bd.jpg" id="1_ux7pa"]
+[ext_resource type="Texture2D" uid="uid://cyjmh7c253n4u" path="res://Sprites/Bg.png" id="1_bgrd8"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="2_7cyya"]
 [ext_resource type="Script" path="res://Testing2/Resource/Room.gd" id="2_ai3k7"]
 [ext_resource type="PackedScene" uid="uid://buuco8mkqbys0" path="res://Testing2/Scenes/obj1.tscn" id="2_dk8rf"]
-[ext_resource type="Texture2D" uid="uid://y5vvu0q67hl3" path="res://Sprites/portrait03.png" id="3_c13vi"]
 [ext_resource type="PackedScene" uid="uid://m42jxbsrt7e5" path="res://Testing2/Scenes/obj2.tscn" id="3_oyjns"]
 
 [sub_resource type="Resource" id="Resource_44855"]
 script = ExtResource("2_7cyya")
 charName = "Detective"
-dialogueLines = Array[String](["Huh, guess there's nobody home. ", "Maybe I'll come back later -- "])
+dialogueLines = Array[String](["Time to look around."])
 revealPortrait = false
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1qx3q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_c13vi")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Resource" id="Resource_7lygf"]
-script = ExtResource("2_7cyya")
-charName = "Buddy"
-dialogueLines = Array[String](["Hey there, kid! My name's Buddy! ", "Nice to meet ya!"])
-portrait = SubResource("SpriteFrames_1qx3q")
-revealPortrait = true
 
 [resource]
 script = ExtResource("2_ai3k7")
-bg = ExtResource("1_ux7pa")
+bg = ExtResource("1_bgrd8")
 objects = Array[PackedScene]([ExtResource("2_dk8rf"), ExtResource("3_oyjns")])
-dialogue = Array[ExtResource("2_7cyya")]([SubResource("Resource_44855"), SubResource("Resource_7lygf")])
+dialogue = Array[ExtResource("2_7cyya")]([SubResource("Resource_44855")])

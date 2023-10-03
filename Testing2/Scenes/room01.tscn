@@ -1,16 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://uxsiel21re0"]
 
-[ext_resource type="Texture2D" uid="uid://iu3rv7qwb3eh" path="res://Sprites/tempBGs/5ce56f96fbb7b8826e59fc39af43a3bd.jpg" id="1_ufpbn"]
+[ext_resource type="Texture2D" uid="uid://cyjmh7c253n4u" path="res://Sprites/Bg.png" id="1_5lsdp"]
 [ext_resource type="Script" path="res://Testing2/RoomButton.gd" id="2_47c8a"]
 [ext_resource type="PackedScene" uid="uid://buuco8mkqbys0" path="res://Testing2/Scenes/obj1.tscn" id="3_3vyq0"]
 [ext_resource type="PackedScene" uid="uid://m42jxbsrt7e5" path="res://Testing2/Scenes/obj2.tscn" id="4_jiwrk"]
 
 [node name="Room" type="VBoxContainer"]
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="Image" type="TextureRect" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("1_ufpbn")
+texture = ExtResource("1_5lsdp")
+expand_mode = 3
 stretch_mode = 6
 
 [node name="Button" type="Button" parent="."]

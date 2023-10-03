@@ -1,8 +1,6 @@
 extends Button
 
-@onready var dialogue_panel = $".."
-@onready var main = $"../.."
-@onready var actions = $"../../Actions"
+@export var nodeToClose: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +11,5 @@ func _process(delta):
 	pass
 	
 func press():
-	dialogue_panel.hide()
-	main.enable_disable_buttons(false)
-	actions.show()
+	nodeToClose.hide()
+

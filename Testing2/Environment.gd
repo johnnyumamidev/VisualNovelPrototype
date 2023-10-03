@@ -17,10 +17,11 @@ func change_room(_new_bg: Texture2D):
 	bg.texture = _new_bg
 
 func show_portrait():
+	print("show portrait")
 	portrait.show()
 
 func hide_portrait():
-	portrait.visible = !portrait.visible
+	portrait.hide()
 
 func change_portrait(spriteFrames: SpriteFrames):
 	#change portrait sprite

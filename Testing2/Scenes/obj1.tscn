@@ -9,12 +9,14 @@ script = ExtResource("3_6r61a")
 charName = "Detective"
 dialogueLines = Array[String](["Huh, that's a funny lookin' box."])
 revealPortrait = false
+open_inspection = false
 
 [sub_resource type="Resource" id="Resource_jfxo3"]
 script = ExtResource("3_6r61a")
 charName = ""
 dialogueLines = Array[String](["Wonder if anyone would mind if I took a look inside..."])
 revealPortrait = false
+open_inspection = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
 size = Vector2(108, 111)
@@ -25,6 +27,7 @@ texture = ExtResource("1_4x1t6")
 script = ExtResource("2_50kwm")
 objName = "Box"
 dialogueNodes = Array[ExtResource("3_6r61a")]([SubResource("Resource_10fqw"), SubResource("Resource_jfxo3")])
+containsClue = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

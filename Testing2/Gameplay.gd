@@ -7,6 +7,7 @@ var actionNodes: Array[Node]
 @onready var dialogue = $Dialogue
 @onready var actions = $Actions
 @onready var transition = $"../Transition/AnimationPlayer"
+@onready var inspect = $Inspect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +19,7 @@ func _ready():
 	var dialoguePanel = $DialoguePanel
 	dialoguePanel.end_dialogue.connect(show_actions)
 	dialoguePanel.start_dialogue.connect(hide_actions)
+	dialoguePanel.open_inspection.connect(open_inspection_panel)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,10 +28,12 @@ func _process(delta):
 func open(node: Node):
 	node.visible = !node.visible
 	
-	if node.name == "Inspect":
+	if node == inspect:
+		print("inspect")
 		environment.hide_portrait()
 		environment.objects.visible = !environment.objects.visible
 	else:
+		print(node.name)
 		environment.show_portrait()
 		environment.objects.hide()
 	
@@ -50,3 +54,8 @@ func show_actions():
 	
 func hide_actions():
 	actions.hide()
+
+func open_inspection_panel():
+	print("opening inspection panel")
+	var inspectionPanel = $Inspect/Inspection
+	inspectionPanel.show()

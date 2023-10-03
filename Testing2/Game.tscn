@@ -1,15 +1,17 @@
-[gd_scene load_steps=33 format=3 uid="uid://buqforpj57rg3"]
+[gd_scene load_steps=34 format=3 uid="uid://buqforpj57rg3"]
 
 [ext_resource type="Script" path="res://Testing2/game.gd" id="1_hi6rp"]
 [ext_resource type="Script" path="res://Testing2/Environment.gd" id="2_4jubg"]
-[ext_resource type="Texture2D" uid="uid://b7cygot3veqln" path="res://Sprites/spirit3.png" id="3_qlxgo"]
 [ext_resource type="Script" path="res://Testing2/Transition.gd" id="4_lxox6"]
 [ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://transition.png" id="5_mxs8s"]
 [ext_resource type="Script" path="res://Testing2/Gameplay.gd" id="6_t3k6i"]
+[ext_resource type="Texture2D" uid="uid://dxvbf47suq0im" path="res://PortraitRed.png" id="7_j1ycx"]
 [ext_resource type="Script" path="res://Testing2/DialogueChoice.gd" id="7_waral"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="8_68nsn"]
 [ext_resource type="Script" path="res://Testing2/Dialogue.gd" id="8_xcwex"]
 [ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://panel.png" id="9_0kgsw"]
+[ext_resource type="Script" path="res://Testing2/Inspect.gd" id="9_15a3n"]
+[ext_resource type="Script" path="res://Testing2/CloseDialogue.gd" id="10_wo688"]
 [ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="10_yeo3o"]
 [ext_resource type="Script" path="res://Testing/MenuButton.gd" id="11_8pfpx"]
 [ext_resource type="Script" path="res://Testing2/Map.gd" id="11_s0s6f"]
@@ -25,25 +27,11 @@
 [ext_resource type="Texture2D" uid="uid://c5rb43cv5sglv" path="res://Testing2/reticle.png" id="23_eyx8e"]
 [ext_resource type="Texture2D" uid="uid://c31ynodtjinwr" path="res://Sprites/nextLineIcon/icon3.png" id="23_r3egv"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rrw3p"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_qlxgo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_qlxgo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_bxc5a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_yeo3o")
+"texture": ExtResource("7_j1ycx")
 }],
 "loop": true,
 "name": &"default",
@@ -56,6 +44,7 @@ charName = "Spirit"
 dialogueLines = Array[String](["Hello, stranger! ", "What can I do for you?"])
 portrait = SubResource("SpriteFrames_bxc5a")
 revealPortrait = true
+open_inspection = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2xisn"]
 animations = [{
@@ -187,13 +176,11 @@ script = ExtResource("2_4jubg")
 
 [node name="BG" type="Sprite2D" parent="Environment"]
 position = Vector2(640, 360)
-scale = Vector2(2.5, 2.5)
 
 [node name="Portrait" type="AnimatedSprite2D" parent="Environment"]
 visible = false
 position = Vector2(604, 400)
 scale = Vector2(0.669531, 0.669531)
-sprite_frames = SubResource("SpriteFrames_rrw3p")
 autoplay = "default"
 
 [node name="Objects" type="Node2D" parent="Environment"]
@@ -232,16 +219,57 @@ custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
 [node name="Inspect" type="CanvasLayer" parent="Gameplay"]
-visible = false
+script = ExtResource("9_15a3n")
 
-[node name="Objects" type="Control" parent="Gameplay/Inspect"]
+[node name="Inspection" type="Control" parent="Gameplay/Inspect"]
+visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -409.5
+offset_top = -179.5
+offset_right = 409.5
+offset_bottom = 179.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(350, 250)
+
+[node name="BG" type="NinePatchRect" parent="Gameplay/Inspect/Inspection"]
+modulate = Color(0.14902, 0.14902, 0.14902, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_0kgsw")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Button" type="Button" parent="Gameplay/Inspect/Inspection" node_paths=PackedStringArray("nodeToClose")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -104.0
+offset_right = 172.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CLOSE PANEL"
+script = ExtResource("10_wo688")
+nodeToClose = NodePath("..")
 
 [node name="DeductionMenu" type="CanvasLayer" parent="Gameplay"]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Gameplay/DeductionMenu"]
 modulate = Color(1, 1, 1, 0.611765)
@@ -481,6 +509,93 @@ ____________________________________________________
 ____________________________________________________
 "
 autowrap_mode = 2
+
+[node name="Clues" type="Control" parent="Gameplay/DeductionMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 145.0
+offset_top = 32.0
+offset_right = 1066.0
+offset_bottom = 509.0
+
+[node name="BG" type="NinePatchRect" parent="Gameplay/DeductionMenu/Clues"]
+modulate = Color(0.14902, 0.14902, 0.14902, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_0kgsw")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/DeductionMenu/Clues"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="Label" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "CLUES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "BUTTON"
+
+[node name="Button2" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "BUTTON"
+
+[node name="Button3" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "BUTTON"
+
+[node name="Button4" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "BUTTON"
+
+[node name="Button5" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "BUTTON"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Label" type="Label" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Clues Information Goes Here:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Map" type="PanelContainer" parent="Gameplay"]
 visible = false

@@ -8,3 +8,4 @@
 script = ExtResource("1_xo43u")
 bg = ExtResource("1_65x4x")
 objects = Array[PackedScene]([ExtResource("2_p36hy")])
+dialogue = Array[Resource("res://Resources/dialogue_node.gd")]([])
