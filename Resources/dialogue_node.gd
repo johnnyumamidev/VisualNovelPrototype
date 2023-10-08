@@ -8,3 +8,4 @@ class_name DialogueNode
 @export var portrait: SpriteFrames
 @export var revealPortrait: bool
 @export var open_inspection: bool
+@export var contains_clue: bool

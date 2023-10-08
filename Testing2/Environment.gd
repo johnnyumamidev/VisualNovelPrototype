@@ -1,9 +1,10 @@
 extends Node2D
 
+@export var dialogue_panel: Control
+
 @onready var bg = $BG
 @onready var portrait = $Portrait
 @onready var objects = $Objects
-@onready var dialogue_panel = $"../Gameplay/DialoguePanel"
 
 func _ready():
 	#starting room bg

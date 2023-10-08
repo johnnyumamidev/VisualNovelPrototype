@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cyjmh7c253n4u" path="res://Sprites/Bg.png" id="1_5lsdp"]
 [ext_resource type="Script" path="res://Testing2/RoomButton.gd" id="2_47c8a"]
 [ext_resource type="PackedScene" uid="uid://l8fw3dwml7vi" path="res://Testing2/Scenes/obj1.tscn" id="3_3vyq0"]
-[ext_resource type="PackedScene" path="res://Testing2/Scenes/obj2.tscn" id="4_jiwrk"]
+[ext_resource type="PackedScene" uid="uid://3qljlhat0xxg" path="res://Testing2/Scenes/obj2.tscn" id="4_jiwrk"]
 
 [node name="Room" type="VBoxContainer"]
 offset_right = 1280.0

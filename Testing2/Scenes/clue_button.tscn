@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://gldxrq476o2t"]
+
+[ext_resource type="StyleBox" uid="uid://c604dbcefmy0b" path="res://Testing2/Themes/clue_button.tres" id="1_d3y6t"]
+[ext_resource type="Texture2D" uid="uid://tvumuftdjmsw" path="res://Sprites/label_bg.png" id="1_l6nnf"]
+[ext_resource type="Script" path="res://Testing2/clue_button.gd" id="3_0agbn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0dq8y"]
+texture = ExtResource("1_l6nnf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qhj1g"]
+texture = ExtResource("1_l6nnf")
+modulate_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[node name="ClueButton" type="Button"]
+custom_minimum_size = Vector2(200, 0)
+theme_override_styles/normal = ExtResource("1_d3y6t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0dq8y")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qhj1g")
+text = "CLUE"
+script = ExtResource("3_0agbn")

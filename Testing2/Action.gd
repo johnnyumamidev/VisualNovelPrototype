@@ -1,6 +1,6 @@
 extends Button
 
-@onready var transition = $"../../../Transition/AnimationPlayer"
+@export var transition: AnimationPlayer
 @onready var actions = $".."
 
 @export var node: Node

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://cy8u3s65r3cr6"]
 
 [ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://Sprites/icon.svg" id="1_2tkxd"]
 [ext_resource type="Script" path="res://Testing2/Object.gd" id="2_o6vqg"]
@@ -9,18 +9,24 @@ script = ExtResource("3_svf7k")
 charName = "Detective"
 dialogueLines = Array[String](["I'm not allowed near lamps anymore.", " I get all jittery..."])
 revealPortrait = false
+open_inspection = false
+contains_clue = false
 
 [sub_resource type="Resource" id="Resource_6h7il"]
 script = ExtResource("3_svf7k")
 charName = "Sidekick"
 dialogueLines = Array[String](["What do you mean...? "])
 revealPortrait = false
+open_inspection = false
+contains_clue = false
 
 [sub_resource type="Resource" id="Resource_my4p8"]
 script = ExtResource("3_svf7k")
 charName = "Sidekick"
 dialogueLines = Array[String](["Like, you have a [b]lamp-phobia[/b] or something?"])
 revealPortrait = false
+open_inspection = false
+contains_clue = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
 size = Vector2(108, 111)
@@ -30,6 +36,7 @@ position = Vector2(488, 237)
 texture = ExtResource("1_2tkxd")
 script = ExtResource("2_o6vqg")
 objName = "Lamp"
+objDescription = "A lamp with a hidden compartment in the base."
 dialogueNodes = Array[ExtResource("3_svf7k")]([SubResource("Resource_fbcf3"), SubResource("Resource_6h7il"), SubResource("Resource_my4p8")])
 
 [node name="Area2D" type="Area2D" parent="."]

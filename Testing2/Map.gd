@@ -1,9 +1,8 @@
 extends PanelContainer
-@onready var transition = $"../../Transition/AnimationPlayer"
-@onready var environment = $"../../Environment"
+@export var transition: AnimationPlayer
+@export var environment: Node
 
-@onready var roomsParent = $MarginContainer/ScrollContainer/ROOMS
-
+@export var roomsParent: Node
 @export var roomScenes: Array[PackedScene]
 var roomIndex = 0
 

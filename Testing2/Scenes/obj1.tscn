@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://l8fw3dwml7vi"]
 
-[ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://Sprites/icon.svg" id="1_i0g8w"]
+[ext_resource type="Texture2D" uid="uid://bfv4qutyhehve" path="res://Sprites/box.png" id="1_hjmek"]
 [ext_resource type="Script" path="res://Testing2/Object.gd" id="2_50kwm"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="3_6r61a"]
 
@@ -10,6 +10,7 @@ charName = "Detective"
 dialogueLines = Array[String](["Huh, that's a funny lookin' box."])
 revealPortrait = false
 open_inspection = false
+contains_clue = false
 
 [sub_resource type="Resource" id="Resource_jfxo3"]
 script = ExtResource("3_6r61a")
@@ -17,17 +18,18 @@ charName = ""
 dialogueLines = Array[String](["Wonder if anyone would mind if I took a look inside..."])
 revealPortrait = false
 open_inspection = true
+contains_clue = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
 size = Vector2(108, 111)
 
 [node name="Object" type="Sprite2D"]
-position = Vector2(435, 464)
-texture = ExtResource("1_i0g8w")
+position = Vector2(284, 471)
+texture = ExtResource("1_hjmek")
 script = ExtResource("2_50kwm")
 objName = "Box"
+objDescription = "A strangely shaped box that cannot be opened without a key."
 dialogueNodes = Array[ExtResource("3_6r61a")]([SubResource("Resource_10fqw"), SubResource("Resource_jfxo3")])
-containsClue = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

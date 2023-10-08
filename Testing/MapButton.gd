@@ -2,7 +2,6 @@ extends Button
 
 @export var npcData: NPC
 
-@onready var roomsManager = $"../../../../.."
 @onready var room = $"../Room"
 @onready var animation_player = $"../../../../../../Transition/AnimationPlayer"
 @onready var npcNode = $"../../../../../../Environment/NPC"

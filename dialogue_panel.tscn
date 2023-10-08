@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://br5xjpygdiagk"]
+
+[ext_resource type="Theme" uid="uid://23wkuxut0gj0" path="res://Testing2/Themes/panelTheme.tres" id="1_y7imt"]
+[ext_resource type="Script" path="res://Scenes/DialoguePanel3.gd" id="2_sfabw"]
+[ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://Sprites/panel.png" id="3_gxelw"]
+[ext_resource type="Script" path="res://Scenes/UI/LineCompleteIcon.gd" id="4_pyvag"]
+[ext_resource type="Texture2D" uid="uid://ii3vqkwylidj" path="res://Sprites/nextLineIcon/icon1.png" id="5_0l27k"]
+[ext_resource type="Texture2D" uid="uid://c5muc1voer4t3" path="res://Sprites/nextLineIcon/icon2.png" id="6_3eh05"]
+[ext_resource type="Texture2D" uid="uid://c31ynodtjinwr" path="res://Sprites/nextLineIcon/icon3.png" id="7_74mqa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xisn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0l27k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3eh05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_74mqa")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 8.0
+}]
+
+[node name="DialoguePanel" type="Control" groups=["Dialogue"]]
+visible = false
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -561.0
+offset_top = -236.0
+offset_right = 561.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_y7imt")
+script = ExtResource("2_sfabw")
+
+[node name="BG" type="NinePatchRect" parent="."]
+modulate = Color(0.137255, 0.254902, 0.290196, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_gxelw")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 25
+
+[node name="Dialogue" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 18.0
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="134241" type="VScrollBar" parent="MarginContainer/Dialogue"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+step = 1.0
+
+[node name="16852" type="VScrollBar" parent="MarginContainer/Dialogue"]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+max_value = 68.0
+step = 1.0
+page = 68.0
+
+[node name="Character" type="Timer" parent="."]
+wait_time = 0.03
+
+[node name="Sentence" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="LineCompleteIcon" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_pyvag")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LineCompleteIcon"]
+scale = Vector2(0.24, 0.24)
+sprite_frames = SubResource("SpriteFrames_2xisn")
+animation = &"hover"
+frame_progress = 0.100922
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 57.0
+offset_top = -36.0
+offset_right = 400.0
+offset_bottom = 28.0
+
+[node name="ColorRect" type="NinePatchRect" parent="PanelContainer"]
+modulate = Color(0.12549, 0.427451, 0.356863, 1)
+layout_mode = 2
+texture = ExtResource("3_gxelw")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="CharacterName" type="Label" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 36
+text = "CharacterName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Character" to="." method="_on_character_timeout" flags=18]
+[connection signal="timeout" from="Sentence" to="." method="_on_sentence_timeout" flags=18]

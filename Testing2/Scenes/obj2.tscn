@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://3qljlhat0xxg"]
 
 [ext_resource type="Texture2D" uid="uid://b3h7avwr8ooyp" path="res://Sprites/icon.svg" id="1_stnvk"]
 [ext_resource type="Script" path="res://Testing2/Object.gd" id="2_ovw3o"]
@@ -9,6 +9,8 @@ script = ExtResource("3_skg7i")
 charName = "Detective"
 dialogueLines = Array[String](["Wow, that's a beautiful vase. ", "I bet it is worth a [rainbow]fortune."])
 revealPortrait = false
+open_inspection = false
+contains_clue = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ox3bn"]
 size = Vector2(108, 111)
@@ -18,6 +20,7 @@ position = Vector2(722, 309)
 texture = ExtResource("1_stnvk")
 script = ExtResource("2_ovw3o")
 objName = "Vase"
+objDescription = "A beautiful vase that looks to be very, very expensive."
 dialogueNodes = Array[ExtResource("3_skg7i")]([SubResource("Resource_4yosq")])
 
 [node name="Area2D" type="Area2D" parent="."]

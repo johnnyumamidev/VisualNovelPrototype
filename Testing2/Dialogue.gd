@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var choices = $HBoxContainer
-@onready var dialogue_panel = $"../DialoguePanel"
+@onready var choices = $Choices
+@export var dialogue_panel: Control
 
 @onready var main = $".."
 

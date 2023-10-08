@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bo2iw71wdjxp4"]
+[gd_scene load_steps=37 format=3 uid="uid://dm6t5qj8npk32"]
 
 [ext_resource type="Script" path="res://Testing2/game.gd" id="1_hi6rp"]
 [ext_resource type="Script" path="res://Testing2/Environment.gd" id="2_4jubg"]
 [ext_resource type="Script" path="res://Testing2/Transition.gd" id="4_lxox6"]
-[ext_resource type="Texture2D" uid="uid://dxvbf47suq0im" path="res://Sprites/PortraitRed.png" id="6_6rub5"]
+[ext_resource type="Texture2D" uid="uid://bvi6qx1jfyx05" path="res://Sprites/Boy.png" id="6_1bkr2"]
 [ext_resource type="Script" path="res://Testing2/Gameplay.gd" id="6_t3k6i"]
 [ext_resource type="Script" path="res://Testing2/DialogueChoice.gd" id="7_waral"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="8_68nsn"]
@@ -11,11 +11,12 @@
 [ext_resource type="Script" path="res://Testing2/Inspect.gd" id="9_15a3n"]
 [ext_resource type="Texture2D" uid="uid://tk7keljfnybh" path="res://Sprites/panel.png" id="9_i2072"]
 [ext_resource type="Script" path="res://Testing2/CloseDialogue.gd" id="10_wo688"]
-[ext_resource type="Texture2D" uid="uid://bxqmov36trrv6" path="res://Sprites/portrait02.png" id="10_yeo3o"]
-[ext_resource type="Script" path="res://Testing/MenuButton.gd" id="11_8pfpx"]
+[ext_resource type="Script" path="res://Testing2/CaseFiles.gd" id="11_8evgt"]
 [ext_resource type="Script" path="res://Testing2/Map.gd" id="11_s0s6f"]
 [ext_resource type="Texture2D" uid="uid://cxv66c66takve" path="res://Sprites/transition.png" id="11_v4s38"]
 [ext_resource type="PackedScene" uid="uid://uxsiel21re0" path="res://Testing2/Scenes/room01.tscn" id="12_kfdej"]
+[ext_resource type="PackedScene" uid="uid://gldxrq476o2t" path="res://Testing2/Scenes/clue_button.tscn" id="12_qfn4q"]
+[ext_resource type="Texture2D" uid="uid://tvumuftdjmsw" path="res://Sprites/label_bg.png" id="13_mwn5d"]
 [ext_resource type="PackedScene" uid="uid://1u28wov1akin" path="res://Testing2/Scenes/room02.tscn" id="13_o16r8"]
 [ext_resource type="Theme" uid="uid://23wkuxut0gj0" path="res://Testing2/Themes/panelTheme.tres" id="15_ra256"]
 [ext_resource type="Script" path="res://Scenes/UI/LineCompleteIcon.gd" id="20_ejke1"]
@@ -27,24 +28,36 @@
 [ext_resource type="Texture2D" uid="uid://c5rb43cv5sglv" path="res://Testing2/reticle.png" id="23_eyx8e"]
 [ext_resource type="Texture2D" uid="uid://c31ynodtjinwr" path="res://Sprites/nextLineIcon/icon3.png" id="23_r3egv"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dg45e"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bxc5a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_6rub5")
+"texture": ExtResource("6_1bkr2")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_kchan"]
+[sub_resource type="Resource" id="Resource_85t55"]
 script = ExtResource("8_68nsn")
 charName = "Spirit"
-dialogueLines = Array[String](["Hello, stranger! ", "What can I do for you?"])
+dialogueLines = Array[String](["Can't you tell? ", "I'm a ghost! Hehehe"])
 portrait = SubResource("SpriteFrames_bxc5a")
 revealPortrait = true
 open_inspection = false
+contains_clue = false
+
+[sub_resource type="Resource" id="Resource_kchan"]
+script = ExtResource("8_68nsn")
+charName = "Spirit"
+dialogueLines = Array[String](["Nobody's asked about him in a long time...", "Do you really want to know about him?"])
+portrait = SubResource("SpriteFrames_bxc5a")
+revealPortrait = true
+open_inspection = false
+contains_clue = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2xisn"]
 animations = [{
@@ -166,34 +179,40 @@ _data = {
 "fade_out": SubResource("Animation_pbw4l")
 }
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("dialogue", "transition")]
 script = ExtResource("1_hi6rp")
+dialogue = NodePath("Gameplay/DialoguePanel")
+transition = NodePath("Transition/AnimationPlayer")
 
 [node name="GameStates" type="Node2D" parent="."]
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Environment" type="Node2D" parent="." node_paths=PackedStringArray("dialogue_panel")]
 script = ExtResource("2_4jubg")
+dialogue_panel = NodePath("../Gameplay/DialoguePanel")
 
 [node name="BG" type="Sprite2D" parent="Environment"]
 position = Vector2(640, 360)
 
 [node name="Portrait" type="AnimatedSprite2D" parent="Environment"]
 visible = false
-position = Vector2(604, 400)
-scale = Vector2(0.669531, 0.669531)
+position = Vector2(640, 640)
+sprite_frames = SubResource("SpriteFrames_dg45e")
 autoplay = "default"
 
 [node name="Objects" type="Node2D" parent="Environment"]
 visible = false
 
-[node name="Gameplay" type="CanvasLayer" parent="."]
+[node name="Gameplay" type="CanvasLayer" parent="." node_paths=PackedStringArray("environment", "transition")]
 script = ExtResource("6_t3k6i")
+environment = NodePath("../Environment")
+transition = NodePath("../Transition/AnimationPlayer")
 
-[node name="Dialogue" type="CanvasLayer" parent="Gameplay"]
+[node name="Dialogue" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("dialogue_panel")]
 visible = false
 script = ExtResource("8_xcwex")
+dialogue_panel = NodePath("../DialoguePanel")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Gameplay/Dialogue"]
+[node name="Choices" type="VBoxContainer" parent="Gameplay/Dialogue"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -206,17 +225,25 @@ offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogueChoice" type="Button" parent="Gameplay/Dialogue/HBoxContainer"]
+[node name="DialogueChoice" type="Button" parent="Gameplay/Dialogue/Choices"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Choice"
+text = "Who are you"
 script = ExtResource("7_waral")
-dialogueNodes = Array[ExtResource("8_68nsn")]([SubResource("Resource_kchan")])
+dialogueNodes = Array[ExtResource("8_68nsn")]([SubResource("Resource_85t55")])
 
-[node name="Control" type="Control" parent="Gameplay/Dialogue/HBoxContainer"]
+[node name="Control" type="Control" parent="Gameplay/Dialogue/Choices"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+
+[node name="DialogueChoice2" type="Button" parent="Gameplay/Dialogue/Choices"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Mr. Darcy"
+script = ExtResource("7_waral")
+dialogueNodes = Array[ExtResource("8_68nsn")]([SubResource("Resource_kchan")])
 
 [node name="Inspect" type="CanvasLayer" parent="Gameplay"]
 script = ExtResource("9_15a3n")
@@ -269,256 +296,25 @@ text = "CLOSE PANEL"
 script = ExtResource("10_wo688")
 nodeToClose = NodePath("..")
 
-[node name="DeductionMenu" type="CanvasLayer" parent="Gameplay"]
+[node name="CaseFiles" type="CanvasLayer" parent="Gameplay" node_paths=PackedStringArray("clueImage", "clueText", "clueContainer") groups=["Clues"]]
+script = ExtResource("11_8evgt")
+clueImage = NodePath("Clues/VBoxContainer/Margin/HBoxContainer/ColorRect/ClueImage")
+clueText = NodePath("Clues/VBoxContainer/Margin/HBoxContainer/ClueText")
+clueContainer = NodePath("Clues/VBoxContainer/HBoxContainer2/ScrollContainer/Clues")
+clueButton = ExtResource("12_qfn4q")
 
-[node name="TextureRect" type="TextureRect" parent="Gameplay/DeductionMenu"]
-modulate = Color(1, 1, 1, 0.611765)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -480.0
-offset_top = -335.0
-offset_right = 415.0
-offset_bottom = 169.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_v4s38")
-
-[node name="TextureRect2" type="TextureRect" parent="Gameplay/DeductionMenu"]
-modulate = Color(0, 0.870588, 0.87451, 0.85098)
-offset_left = 225.0
-offset_top = 39.0
-offset_right = 476.0
-offset_bottom = 327.0
-texture = ExtResource("10_yeo3o")
-
-[node name="TextureRect" type="TextureRect" parent="Gameplay/DeductionMenu/TextureRect2"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_v4s38")
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Gameplay/DeductionMenu"]
-offset_left = 538.0
-offset_top = 129.0
-offset_right = 700.0
-offset_bottom = 161.0
-text = "They were killed by:"
-
-[node name="RichTextLabel7" type="RichTextLabel" parent="Gameplay/DeductionMenu"]
-offset_left = 538.0
-offset_top = 78.0
-offset_right = 749.0
-offset_bottom = 110.0
-text = "This spirit's name was:"
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="Gameplay/DeductionMenu"]
-offset_left = 538.0
-offset_top = 179.0
-offset_right = 752.0
-offset_bottom = 216.0
-bbcode_enabled = true
-text = "their dying wish was to:"
-
-[node name="Control" type="Control" parent="Gameplay/DeductionMenu"]
+[node name="Clues" type="Control" parent="Gameplay/CaseFiles"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 785.0
-offset_top = 80.0
-offset_right = 825.0
-offset_bottom = 120.0
-
-[node name="Label" type="RichTextLabel" parent="Gameplay/DeductionMenu/Control"]
-layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = -20.5
-offset_right = 57.0
-offset_bottom = 20.5
+offset_left = -424.0
+offset_top = 75.0
+offset_right = 425.0
+offset_bottom = 511.0
 grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[b](Character)"
 
-[node name="MenuButton" type="MenuButton" parent="Gameplay/DeductionMenu/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = -23.0
-offset_right = 50.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_8pfpx")
-names = Array[String](["[b]Joe", "[b]Jane", "[b]John", "[b]Jack", "[b]Jill"])
-
-[node name="Control2" type="Control" parent="Gameplay/DeductionMenu"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 771.0
-offset_top = 126.0
-offset_right = 811.0
-offset_bottom = 166.0
-
-[node name="Label" type="RichTextLabel" parent="Gameplay/DeductionMenu/Control2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.5
-offset_top = -19.0
-offset_right = 75.5
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[b](Cause of Death)"
-
-[node name="MenuButton" type="MenuButton" parent="Gameplay/DeductionMenu/Control2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -17.0
-offset_right = 76.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_8pfpx")
-names = Array[String](["Drowning", "Strangling", "Decapitation"])
-
-[node name="Control3" type="Control" parent="Gameplay/DeductionMenu"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 823.0
-offset_top = 177.0
-offset_right = 863.0
-offset_bottom = 217.0
-
-[node name="Label" type="RichTextLabel" parent="Gameplay/DeductionMenu/Control3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -18.5
-offset_right = 107.0
-offset_bottom = 18.5
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[b](Unfinished Business)"
-
-[node name="MenuButton" type="MenuButton" parent="Gameplay/DeductionMenu/Control3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -24.0
-offset_right = 74.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_8pfpx")
-names = Array[String](["Wants to see super moon", "Never got to dance with son", "Listen tto music on a cruise"])
-
-[node name="Button" type="Button" parent="Gameplay/DeductionMenu"]
-offset_left = 610.0
-offset_top = 249.0
-offset_right = 828.0
-offset_bottom = 293.0
-theme_override_font_sizes/font_size = 26
-text = "Check with Spirit"
-
-[node name="PanelContainer" type="PanelContainer" parent="Gameplay/DeductionMenu"]
-offset_left = 198.0
-offset_top = 343.0
-offset_right = 496.0
-offset_bottom = 508.0
-
-[node name="TextureRect3" type="TextureRect" parent="Gameplay/DeductionMenu/PanelContainer"]
-modulate = Color(0.286275, 0.286275, 0.286275, 1)
-layout_mode = 2
-texture = ExtResource("11_v4s38")
-
-[node name="RichTextLabel6" type="RichTextLabel" parent="Gameplay/DeductionMenu/PanelContainer"]
-layout_mode = 2
-theme_override_font_sizes/bold_font_size = 32
-bbcode_enabled = true
-text = "[wave][b]Clues:"
-
-[node name="HScrollBar" type="ScrollContainer" parent="Gameplay/DeductionMenu"]
-offset_left = 220.0
-offset_top = 389.0
-offset_right = 478.0
-offset_bottom = 494.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/DeductionMenu/HScrollBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="Gameplay/DeductionMenu"]
-offset_left = 517.0
-offset_top = 342.0
-offset_right = 1021.0
-offset_bottom = 507.0
-
-[node name="TextureRect3" type="TextureRect" parent="Gameplay/DeductionMenu/PanelContainer2"]
-modulate = Color(0.286275, 0.286275, 0.286275, 1)
-layout_mode = 2
-texture = ExtResource("11_v4s38")
-
-[node name="MarginContainer" type="MarginContainer" parent="Gameplay/DeductionMenu/PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="Label" type="Label" parent="Gameplay/DeductionMenu/PanelContainer2/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Description of clue:
-____________________________________________________
-____________________________________________________
-____________________________________________________
-"
-autowrap_mode = 2
-
-[node name="Clues" type="Control" parent="Gameplay/DeductionMenu"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 145.0
-offset_top = 32.0
-offset_right = 1066.0
-offset_bottom = 509.0
-
-[node name="BG" type="NinePatchRect" parent="Gameplay/DeductionMenu/Clues"]
+[node name="BG" type="NinePatchRect" parent="Gameplay/CaseFiles/Clues"]
 modulate = Color(0.14902, 0.14902, 0.14902, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -532,7 +328,8 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/DeductionMenu/Clues"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/CaseFiles/Clues"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -540,70 +337,156 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/CaseFiles/Clues/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="Label" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="Label" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "CLUES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 8.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "BUTTON"
 
-[node name="Button2" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Button2" type="Button" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "BUTTON"
 
-[node name="Button3" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Button3" type="Button" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "BUTTON"
 
-[node name="Button4" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Button4" type="Button" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "BUTTON"
 
-[node name="Button5" type="Button" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Button5" type="Button" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "BUTTON"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Gameplay/DeductionMenu/Clues/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Gameplay/CaseFiles/Clues/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="Label" type="Label" parent="Gameplay/DeductionMenu/Clues/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="Gameplay/CaseFiles/Clues/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Clues Information Goes Here:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Map" type="PanelContainer" parent="Gameplay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay/CaseFiles/Clues"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Gameplay/CaseFiles/Clues/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="ColorRect" type="ColorRect" parent="Gameplay/CaseFiles/Clues/VBoxContainer/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 0.12549)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/CaseFiles/Clues/VBoxContainer/Margin"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Gameplay/CaseFiles/Clues/VBoxContainer/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
+
+[node name="ClueImage" type="TextureRect" parent="Gameplay/CaseFiles/Clues/VBoxContainer/Margin/HBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -125.0
+offset_right = 112.5
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("13_mwn5d")
+
+[node name="ClueText" type="Label" parent="Gameplay/CaseFiles/Clues/VBoxContainer/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Gameplay/CaseFiles/Clues/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Gameplay/CaseFiles/Clues/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Clues" type="HBoxContainer" parent="Gameplay/CaseFiles/Clues/VBoxContainer/HBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="Gameplay/CaseFiles"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gameplay/CaseFiles"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -424.0
+offset_top = 21.0
+offset_right = 424.0
+offset_bottom = 61.0
+grow_horizontal = 2
+
+[node name="Map" type="PanelContainer" parent="Gameplay" node_paths=PackedStringArray("transition", "environment", "roomsParent")]
 visible = false
 offset_left = 105.0
 offset_top = 48.0
 offset_right = 1175.0
 offset_bottom = 515.0
 script = ExtResource("11_s0s6f")
+transition = NodePath("../../Transition/AnimationPlayer")
+environment = NodePath("../../Environment")
+roomsParent = NodePath("MarginContainer/ScrollContainer/ROOMS")
 roomScenes = Array[PackedScene]([ExtResource("12_kfdej"), ExtResource("13_o16r8")])
 
 [node name="ColorRect" type="ColorRect" parent="Gameplay/Map"]
@@ -630,39 +513,43 @@ offset_top = 543.0
 offset_right = 1218.0
 offset_bottom = 627.0
 
-[node name="Talk" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("node")]
+[node name="Talk" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("transition", "node")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Talk"
 script = ExtResource("22_ptcle")
+transition = NodePath("../../../Transition/AnimationPlayer")
 node = NodePath("../../Dialogue")
 
-[node name="Inspect" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("node")]
+[node name="Inspect" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("transition", "node")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Inspect"
 script = ExtResource("22_ptcle")
+transition = NodePath("../../../Transition/AnimationPlayer")
 node = NodePath("../../Inspect")
 
-[node name="CaseFiles" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("node")]
+[node name="CaseFiles" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("transition", "node")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Case Files"
 script = ExtResource("22_ptcle")
-node = NodePath("../../DeductionMenu")
+transition = NodePath("../../../Transition/AnimationPlayer")
+node = NodePath("../../CaseFiles")
 
-[node name="Map" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("node")]
+[node name="Map" type="Button" parent="Gameplay/Actions" node_paths=PackedStringArray("transition", "node")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Map"
 script = ExtResource("22_ptcle")
+transition = NodePath("../../../Transition/AnimationPlayer")
 node = NodePath("../../Map")
 
-[node name="DialoguePanel" type="Control" parent="Gameplay" groups=["Dialogue"]]
+[node name="DialoguePanel" type="Control" parent="Gameplay" node_paths=PackedStringArray("caseFiles", "map") groups=["Dialogue"]]
 visible = false
 layout_mode = 3
 anchors_preset = 7
@@ -678,6 +565,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("15_ra256")
 script = ExtResource("20_o1d05")
+caseFiles = NodePath("../CaseFiles")
+map = NodePath("../Map")
 
 [node name="BG" type="NinePatchRect" parent="Gameplay/DialoguePanel"]
 modulate = Color(0.137255, 0.254902, 0.290196, 1)
@@ -798,6 +687,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("22_xavy0")
 cursorGraphic = ExtResource("23_eyx8e")
+metadata/_edit_use_anchors_ = true
 
 [node name="Transition" type="CanvasLayer" parent="."]
 
@@ -808,6 +698,7 @@ libraries = {
 script = ExtResource("4_lxox6")
 
 [node name="Transition" type="TextureRect" parent="Transition"]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 1.295e+08

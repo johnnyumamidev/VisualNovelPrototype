@@ -2,11 +2,11 @@ extends CanvasLayer
 
 var actionNodes: Array[Node]
 
-@onready var environment = $"../Environment"
+@export var environment: Node
+@export var transition: AnimationPlayer
 
 @onready var dialogue = $Dialogue
 @onready var actions = $Actions
-@onready var transition = $"../Transition/AnimationPlayer"
 @onready var inspect = $Inspect
 
 # Called when the node enters the scene tree for the first time.

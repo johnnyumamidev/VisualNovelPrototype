@@ -1,6 +1,8 @@
 extends Control
 
-@onready var map = $"../Map"
+@export var caseFiles: Node
+
+@export var map: Control
 
 @onready var character_name = %CharacterName
 @onready var dialogue = %Dialogue
@@ -27,6 +29,7 @@ signal start_dialogue()
 signal end_dialogue()
 signal reveal_portrait()
 signal open_inspection()
+signal clue_added()
 
 func _ready():
 	map.room_loaded.connect(get_room_dialogue)
@@ -99,9 +102,12 @@ func _on_sentence_timeout():
 
 func close_dialogue():
 	hide()
-	emit_signal("end_dialogue")
 	no_nodes_left = false
 	is_active = false
+	emit_signal("end_dialogue")
+	
+	if currentDialogueNode.contains_clue:
+		emit_signal("clue_added")
 	
 	if currentDialogueNode.open_inspection:
 		emit_signal("open_inspection")
