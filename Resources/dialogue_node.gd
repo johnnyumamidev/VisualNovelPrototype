@@ -9,3 +9,5 @@ class_name DialogueNode
 @export var revealPortrait: bool
 @export var open_inspection: bool
 @export var contains_clue: bool
+@export var show_overlay: bool
+@export var hide_overlay: bool

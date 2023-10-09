@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dec22cy7iocu3"]
+
+[ext_resource type="Script" path="res://Testing2/CloseDialogue.gd" id="1_dggda"]
+[ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="2_qgqt8"]
+
+[sub_resource type="Resource" id="Resource_pxrpa"]
+script = ExtResource("2_qgqt8")
+charName = ""
+dialogueLines = Array[String](["Oh that looks like something important."])
+revealPortrait = false
+open_inspection = false
+contains_clue = false
+show_overlay = false
+hide_overlay = false
+
+[sub_resource type="Resource" id="Resource_qyljw"]
+script = ExtResource("2_qgqt8")
+charName = ""
+dialogueLines = Array[String](["Better take it with me just in case."])
+revealPortrait = false
+open_inspection = false
+contains_clue = true
+show_overlay = false
+hide_overlay = false
+
+[node name="Button" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -104.0
+offset_right = 172.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CLOSE PANEL"
+script = ExtResource("1_dggda")
+dialogueNodes = Array[ExtResource("2_qgqt8")]([SubResource("Resource_pxrpa"), SubResource("Resource_qyljw")])

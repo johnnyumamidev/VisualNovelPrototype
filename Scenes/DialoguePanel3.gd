@@ -30,6 +30,8 @@ signal end_dialogue()
 signal reveal_portrait()
 signal open_inspection()
 signal clue_added()
+signal show_overlay()
+signal hide_overlay()
 
 func _ready():
 	map.room_loaded.connect(get_room_dialogue)
@@ -88,9 +90,15 @@ func _on_character_timeout():
 			if nodeIndex < dialogueNodes.size() - 1:
 				nodeIndex += 1
 				print("end of node, next node: ", nodeIndex)
+				if currentDialogueNode.show_overlay:
+					print(name, " show overlay")
+					emit_signal("show_overlay")
+				elif currentDialogueNode.hide_overlay:
+					emit_signal("hide_overlay")
 			else:
 				no_nodes_left = true
 				print("no nodes left ", no_nodes_left)
+
 			line_complete_icon.show()
 			
 			typing = false
@@ -111,6 +119,7 @@ func close_dialogue():
 	
 	if currentDialogueNode.open_inspection:
 		emit_signal("open_inspection")
+	
 
 func reset_indexes():
 	nodeIndex = 0

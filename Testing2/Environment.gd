@@ -5,6 +5,7 @@ extends Node2D
 @onready var bg = $BG
 @onready var portrait = $Portrait
 @onready var objects = $Objects
+@onready var overlay = $Overlay
 
 func _ready():
 	#starting room bg

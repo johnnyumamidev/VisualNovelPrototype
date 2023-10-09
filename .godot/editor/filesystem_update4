@@ -19,3 +19,8 @@ res://Testing2/Dialogue.gd
 res://Testing2/Map.gd
 res://Testing2/Action.gd
 res://Testing2/Transition.gd
+res://Testing2/Overlay.gd
+res://Testing2/ClueNotification.gd
+res://Testing2/CloseDialogue.gd
+res://Testing2/Inspect.gd
+res://insideBoxButton.tscn

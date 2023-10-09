@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Room" load_steps=7 format=3 uid="uid://n86ns5osd4ma"]
+[gd_resource type="Resource" script_class="Room" load_steps=11 format=3 uid="uid://n86ns5osd4ma"]
 
 [ext_resource type="Texture2D" uid="uid://cyjmh7c253n4u" path="res://Sprites/Bg.png" id="1_bgrd8"]
 [ext_resource type="Script" path="res://Resources/dialogue_node.gd" id="2_7cyya"]
@@ -9,12 +9,55 @@
 [sub_resource type="Resource" id="Resource_44855"]
 script = ExtResource("2_7cyya")
 charName = "Detective"
-dialogueLines = Array[String](["Time to look around."])
+dialogueLines = Array[String](["Looks like nobody is home right now. ", "I must have just missed them."])
 revealPortrait = false
 open_inspection = false
+contains_clue = false
+show_overlay = false
+hide_overlay = false
+
+[sub_resource type="Resource" id="Resource_yhpuj"]
+script = ExtResource("2_7cyya")
+charName = "Detective"
+dialogueLines = Array[String](["I guess it's no surprise they'd be out considering what just happened here..."])
+revealPortrait = false
+open_inspection = false
+contains_clue = false
+show_overlay = true
+hide_overlay = false
+
+[sub_resource type="Resource" id="Resource_bv6s5"]
+script = ExtResource("2_7cyya")
+charName = ""
+dialogueLines = Array[String](["......", "...", "..."])
+revealPortrait = false
+open_inspection = false
+contains_clue = false
+show_overlay = false
+hide_overlay = true
+
+[sub_resource type="Resource" id="Resource_hq8je"]
+script = ExtResource("2_7cyya")
+charName = ""
+dialogueLines = Array[String](["I wouldn't want to be around here for any longer than I had to, either..."])
+revealPortrait = false
+open_inspection = false
+contains_clue = false
+show_overlay = false
+hide_overlay = false
+
+[sub_resource type="Resource" id="Resource_ffy6l"]
+script = ExtResource("2_7cyya")
+charName = ""
+dialogueLines = Array[String](["Now is a good a time as any to [i]poke around a bit. [/i]"])
+revealPortrait = false
+open_inspection = false
+contains_clue = false
+show_overlay = false
+hide_overlay = false
 
 [resource]
 script = ExtResource("2_ai3k7")
 bg = ExtResource("1_bgrd8")
 objects = Array[PackedScene]([ExtResource("2_dk8rf"), ExtResource("3_oyjns")])
-dialogue = Array[ExtResource("2_7cyya")]([SubResource("Resource_44855")])
+dialogue = Array[ExtResource("2_7cyya")]([SubResource("Resource_44855"), SubResource("Resource_yhpuj"), SubResource("Resource_bv6s5"), SubResource("Resource_hq8je"), SubResource("Resource_ffy6l")])

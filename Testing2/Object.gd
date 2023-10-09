@@ -9,13 +9,14 @@ var hover = false
 var dialogue
 var clues
 
+signal update_clue(texture: Texture2D)
+
 func _ready():
 	name = objName
 	
 	add_to_group("Objects")
 	dialogue = get_tree().get_nodes_in_group("Dialogue")[0]
 	clues = get_tree().get_nodes_in_group("Clues")[0]
-	
 	
 	area.mouse_entered.connect(hover_true)
 	area.mouse_exited.connect(hover_false)
@@ -51,5 +52,5 @@ func inspect():
 
 func add_clue():
 	clues.add_clue(objName, objDescription, texture)
+	emit_signal("update_clue", texture)
 	dialogue.clue_added.disconnect(add_clue)
-	
